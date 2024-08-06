@@ -1,0 +1,369 @@
+:host p,
+:host span,
+:host h3,
+:host label,
+:host input {
+    letter-spacing: 0.5px;
+}
+
+.container {
+    width: 100%;
+    min-width: 950px;
+    min-height: calc(100vh - 100px);
+    display: flex;
+    padding-right: 20px;
+}
+
+.container .main-content {
+    width: calc(100% - 370px);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.main-content .chart-area-main {
+    min-width: 550px;
+    width: 100%;
+    border-radius: 12px;
+    background-image: var(--dark-bg-raial-gradient);
+    height: 360px;
+    padding: 20px;
+}
+
+.chart-area-main .say-hello {
+    margin: 30px 0px 0px 30px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.chart-area-main .say-hello p {
+    font-size: 55px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.chart-area-main .say-hello img {
+    margin-left: 30px;
+    width: 55px;
+    height: 55px;
+    filter: brightness(80%);
+    object-fit: cover;
+    animation: wave 0.7s forwards;
+    transform-origin: bottom right;
+}
+
+@keyframes wave {
+    0% {
+        transform: rotate(20deg);
+    }
+    50% {
+        transform: rotate(-10deg);
+    }
+    75% {
+        transform: rotate(10deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+.main-content .list-new-equipment-borrowed {
+    width: 100%;
+    border-radius: 12px;
+    background-color: var(--dark-bg-color-undertone);
+    height: 255px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.list-new-equipment-borrowed p {
+    font-size: 17px;
+    color: var(--dark-color-undertone);
+    background-color: var(--dark-bg-color-undertone);
+}
+
+table {
+    position: relative;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead {
+    position: sticky;
+    margin-top: 0;
+    top: -0.0125px;
+    left: 0;
+    pointer-events: none;
+    background-color: var(--dark-bg-color-undertone);
+}
+
+th,
+td {
+    padding: 8px;
+    text-align: center;
+    font-weight: 300;
+}
+
+td {
+    color: var(--dark-color);
+    font-size: 15px;
+    transition: 0.3s;
+    border-top: 1px solid var(--dark-color);
+}
+
+td[class="status"] {
+    min-width: 100px;
+}
+
+td[class="status"] span {
+    width: fit-content;
+    border-radius: 5px;
+    font-size: 14px;
+    padding: 3px 15px;
+    font-weight: 400;
+    letter-spacing: 0.1px;
+    color: var(--dark-bg-color);
+    background-image: var(--bg-borrowed);
+}
+
+td a {
+    text-decoration: none;
+    padding: 2px 17px;
+    border-radius: 5px;
+    color: var(--dark-color);
+    font-weight: 400;
+    background-image: var(--dark-bg-raial-gradient);
+}
+
+th:first-child,
+td:first-child {
+    text-align: left;
+}
+
+th:last-child {
+    padding-right: 20px;
+}
+
+th:last-child,
+td:last-child {
+    width: fit-content;
+    text-align: right;
+    width: 100px;
+}
+
+tbody tr {
+    transition: 0.3s;
+}
+
+tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.149);
+}
+tbody tr:hover td{
+    color: var(--dark-color-undertone);
+    border-top: 1px solid var(--dark-color-undertone);
+    border-bottom: 1px solid var(--dark-color-undertone);
+
+}
+
+.container .secondary-content {
+    min-width: 360px;
+    margin-left: 20px;
+}
+
+.secondary-content .chart-area {
+    width: 100%;
+    max-width: 360px;
+    min-height: 360px;
+    max-height: 360px;
+    background-image: var(--dark-bg-raial-gradient);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.chart-area .title-chart p {
+    font-size: 25px;
+    text-align: center;
+    letter-spacing: 0.1px;
+}
+
+.chart-area .circular-progress {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 190px;
+    max-width: 190px;
+    min-height: 190px;
+    height: 190px;
+    border-radius: 50%;
+    background: conic-gradient(var(--dark-color-undertone) calc(var(--progress-value) * 3.6deg), var(--dark-bg-color-undertone) 0deg);
+}
+
+.chart-area .circular-progress::before {
+    content: "";
+    width: calc(100% - 60px);
+    height: calc(100% - 60px);
+    position: absolute;
+    background-color: black;
+    border-radius: 50%;
+}
+
+.circular-progress .progress-value {
+    position: relative;
+    font-size: 45px;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.chart-area .amount-equipment-active p {
+    height: 40px;
+    font-size: 30px;
+    font-weight: 600;
+}
+
+.chart-area .description p {
+    font-size: 15px;
+    color: var(--dark-color);
+}
+
+.secondary-content .list-new-employee-borrowed {
+    width: 100%;
+    max-height: 260px;
+    background-color: var(--dark-bg-color-undertone);
+    border-radius: 12px;
+    padding: 15px 10px;
+    margin-top: 15px;
+}
+
+.vertical-scroll {
+    width: 100%;
+    max-height: 200px;
+    overflow-y: scroll;
+    scrollbar-color: transparent;
+    scroll-behavior: smooth;
+}
+
+.vertical-scroll::-webkit-scrollbar {
+    display: none;
+}
+
+.vertical-scroll ul {
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+}
+
+.vertical-scroll ul li {
+    margin-top: 7px;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+.vertical-scroll ul li:hover {
+    filter: brightness(125%);
+}
+
+.vertical-scroll ul:hover li {
+    filter: brightness(50%) blur(0.3px);
+}
+
+.vertical-scroll ul li:hover {
+    filter: brightness(125%) !important;
+}
+
+ul li .info-employee {
+    display: flex;
+}
+
+.info-employee img {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    margin-right: 10px;
+    filter: brightness(90%);
+}
+
+.info-employee .info {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-employee .info p {
+    color: var(--dark-color);
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.info-employee .info p[class="name"],
+.list-new-employee-borrowed p {
+    font-size: 17px;
+    color: var(--dark-color-undertone);
+}
+
+.list-new-employee-borrowed ul li a {
+    width: 70px;
+    height: 32px;
+    text-decoration: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: "Poppins", sans-serif;
+    border-radius: 3px;
+    font-weight: 500;
+    font-size: 15px;
+    color: var(--dark-bg-color);
+    background-image: var(--bg-raial-gradient);
+}
+
+.list-new-employee-borrowed ul li a:active {
+    transform: scale(1.03);
+}
+
+
+/* reposive */
+
+@media (min-height: 740px) {
+    .list-new-equipment-borrowed,
+    .list-new-employee-borrowed {
+        min-height: 255px;
+        max-height: 255px;
+    }
+    .vertical-scroll {
+        min-height: 180px;
+        max-height: 200px;
+    }
+}
+
+@media (min-height: 780px) {
+    .list-new-equipment-borrowed,
+    .list-new-employee-borrowed {
+        min-height: 319px;
+    }
+    .vertical-scroll {
+        min-height: 265px;
+    }
+}
+
+@media (min-height: 820px) {
+    .list-new-equipment-borrowed,
+    .list-new-employee-borrowed {
+        min-height: 385px;
+    }
+    .vertical-scroll {
+        min-height: 330px;
+    }
+}

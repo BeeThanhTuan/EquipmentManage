@@ -1,0 +1,99 @@
+<div class="container">
+    <div class="content">
+        <div class="infor-detail">
+            <div class="main-infor">
+                <div class="img-area">
+                    <img src="../assets/images/employee.png" alt="">
+                </div>
+                <div class="infor-main">
+                    <p class="name">Antoni</p>
+                    <p class="id">ID: E1233</p>
+                </div>
+            </div>
+            <div class="information">
+                <span>Information</span>
+                <div class="gender infor">
+                    <label for="">Gender:</label>
+                    <p>Male</p>
+                </div>
+                <div class="date-of-birth infor">
+                    <label for="">Date of Birth:</label>
+                    <p>12/12/2002</p>
+                </div>
+            </div>
+            <div class="contact">
+                <span>Contact</span>
+                <div class="email infor">
+                    <label for="">Email Address:</label>
+                    <p>tuann@mail.com</p>
+                </div>
+                <div class="phone infor">
+                    <label for="">Phone Number:</label>
+                    <p>0231 232 232</p>
+                </div>
+                <div class="address infor">
+                    <label for="">Address:</label>
+                    <p>Hoai Thanh - Hoai Nhon - Binh Binh  </p>
+                    
+                </div>
+            </div>
+            <div class="options">
+                <button (click)="openEmployeePopup()">Edit</button>
+            </div>
+        </div>
+        <div class="list-equipment-borrowed">
+            <div class="title">
+                <span>List of borrowed equipment</span>
+                <div class="vertical-scroll">
+                    <div class="unborrowed" *ngIf="false">
+                        <div>
+                            <i class="fa-brands fa-dropbox"></i>
+                            <p>Unborrowed</p>
+                        </div>
+                    </div>
+                    <table *ngIf="true">
+                        <thead>
+                            <tr>
+                                <th>Image</th>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Date borrowed</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="image"><img src="../assets/images/screen.png" alt=""></td>
+                                <td>MT0123</td>
+                                <td>Màn hình Hp</td>
+                                <td>12/23/2024</td>
+                                <td class="option">
+                                    <a routerLink="/manage/equipment/id">Detail</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image"><img src="../assets/images/screen2.png" alt=""></td>
+                                <td>MT0123</td>
+                                <td>Màn hình Hp</td>
+                                <td>12/23/2024</td>
+                                <td class="option">
+                                    <a routerLink="/employee/id">Detail</a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="image"><img src="../assets/images/screen2.png" alt=""></td>
+                                <td>MT0123</td>
+                                <td>Màn hình Hp</td>
+                                <td>12/23/2024</td>
+                                <td class="option">
+                                    <a routerLink="/employee/id">Detail</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-update-employee/>

@@ -1,0 +1,238 @@
+:host p,
+ :host h3,
+ :host label,
+ :host input {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 0.5px;
+}
+
+.overlay {
+    width: 100%;
+    min-width: 600px;
+    height: 100vh;
+    background-color: rgba(40, 40, 40, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    visibility: hidden;
+}
+.overlay.active{
+    visibility: visible;
+}
+.profile {
+    position: relative;
+    width: 350px;
+    padding-bottom: 30px;
+    background-color: var(--dark-bg-color);
+    border-radius: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 5px rgb(64, 64, 64);
+}
+.profile .btn-remove{
+    position: absolute;
+    z-index: 10;
+    width: 35px;
+    height: 35px;
+    top: 5px;
+    right: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.profile .btn-remove i{
+    font-size: 20px;
+    color: rgb(131, 131, 131);
+}
+
+.profile .images {
+    width: 100%;
+    height: 150px;
+    position: relative;
+}
+
+.images img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.profile-image {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    left: 30px;
+    bottom: -50px;
+    border: 5px solid var(--dark-bg-color);
+    z-index: 2;
+}
+
+.profile-image img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile-image div {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+    background-color: rgb(47, 47, 47);
+    right: 0px;
+    bottom: 3px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid gray;
+    cursor: pointer;
+}
+
+.profile-image div input {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    font-size: 0;
+    cursor: pointer;
+}
+
+.profile-image div i {
+    font-size: 13px;
+    color: rgb(219, 219, 220);
+}
+
+.btn-edit {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+.btn-edit div {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+.btn-edit div i {
+    font-size: 20px;
+    color: var(--dark-color-undertone);;
+}
+
+.profile:has(.edit-profile.active) .btn-edit div  i{
+    color: transparent; 
+    background-image: var(--bg-raial-gradient-undertone);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+.btn-edit div:hover i , .profile .btn-remove:hover i{
+    color: transparent; 
+    background-image: var(--bg-raial-gradient-undertone);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+
+.profile .info {
+    width: 100%;
+    height: 60px;
+    color: var(--dark-color-undertone);;
+    padding: 0px 33px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.profile .info p {
+    font-size: 17px;
+    letter-spacing: 0.5px;
+    color: var(--dark-color);;
+}
+
+.profile .info p[class="name"] {
+    font-size: 27px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--dark-color-undertone);;
+}
+
+.profile .edit-profile {
+    width: 100%;
+    padding: 0px 30px;
+    margin-top: 20px;
+    display: none;
+}
+.profile .edit-profile.active{
+    display: flex;
+}
+
+.edit-profile form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-profile form h3 {
+    color: var(--dark-color-undertone);;
+    font-size: 25px;
+    letter-spacing: 1px;
+}
+
+.edit-profile form div {
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+    color: var(--dark-color-undertone);;
+}
+.edit-profile form div input{
+    margin-top: 5px;
+    height: 35px;
+    border-radius: 8px;
+    border: none;
+    padding: 0px 15px;
+    color: var(--dark-color-undertone);;
+    font-size: 16px;
+    font-weight: 400;
+    background-color: var(--dark-bg-color-undertone);
+}
+form div div .invalid{
+    font-family: "Poppins", sans-serif;
+    margin-top: 5;
+    font-size: 14px;
+    color: rgb(158, 77, 77);
+}
+.edit-profile form button{
+    font-family: "Poppins", sans-serif;
+    height: 35px;
+    margin-top: 20px;
+    border-radius: 8px;
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background-image: var(--bg-raial-gradient);
+    border: none;
+    color: #282828;
+}
+
+.edit-profile form button:disabled {
+    filter: blur(0.5px);
+    cursor: not-allowed;
+    transform: scale(1);
+}
+.edit-profile form button:disabled:active {
+    transform: scale(1);
+}
+.edit-profile form button:active {
+    transform: scale(1.01);
+}

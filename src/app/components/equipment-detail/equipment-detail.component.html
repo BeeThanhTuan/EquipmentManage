@@ -1,0 +1,34 @@
+<div class="container">
+    <div class="content">
+        <div class="infor-detail">
+            <div class="infor-area">
+                <div class="img-area">
+                    <img src="../assets/images/screen2.png" alt="">
+                </div>
+                <div class="infor">
+                    <p class="name">Name: Màn hình LG 24MR400-B 24" IPS 100Hz</p>
+                    <p>ID: MH9234</p>
+                    <p>Description: được biết đến với khả năng hiển thị vượt trội so với những sản phẩm trong cùng phân khúc và nhu cầu sử dụng như làm việc, học tập. Và minh chứng cho việc đó sẽ được thể hiện qua LG 24MR400-B, hãy cùng GEARVN tìm hiểu ngay về chiếc màn hình ngay sau đây nhé !</p>
+                    <p class="active">Status: <span class="borrowed">borrowed</span></p>
+                    <div>
+                        <p>Date Borrowed: 12/12/2024</p>
+                    </div>
+                    <div class="options">
+                        <div class="instock" *ngIf="false">
+                            <button ><i class="fa-solid fa-user-plus"></i></button>
+                        </div>
+                        <div class="borrowed" *ngIf="true">
+                            <button ><i class="fa-solid fa-user-minus"></i></button>
+                            <a routerLink="/manage/employee/id"><i class="fa-solid fa-user-tag" ></i></a>
+                        </div>
+                        <div class="btn-update">
+                            <button (click)="openEquipmentUpdatePopup()">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<app-equipment-update/>
+

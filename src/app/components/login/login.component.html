@@ -1,0 +1,43 @@
+<div class="container">
+    <div class="content">
+        <form [formGroup]="userForm" (ngSubmit)="handleLogin()">
+            <div class="title">
+                <p>Welcome to</p>
+                <p class="name">Equiment Manage</p>
+            </div>
+            <div class="field">
+                <label>Email</label>
+                <div>
+                    <input type="text" formControlName="email" placeholder="Enter your email">
+                    <span [ngClass]="{
+                        'validating':emailControl?.valid && (emailControl?.dirty || emailControl?.touched),
+                        'invalidating': emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)
+                    }"></span>
+                </div>
+                <div *ngIf="emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)">
+                    <div class="invalid" *ngIf="emailControl?.hasError('required')">Email is required.</div>
+                    <div class="invalid" *ngIf="emailControl?.hasError('email')">Email invalid.</div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <div>
+                    <input type="password" formControlName="password" placeholder="********">
+                    <span [ngClass]="{
+                        'validating':passwordControl?.valid && (passwordControl?.dirty || passwordControl?.touched),
+                        'invalidating': passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)
+                    }"></span>
+                </div>
+                <div *ngIf="passwordControl?.invalid && (passwordControl?.dirty || passwordControl?.touched)">
+                    <div class="invalid" *ngIf="passwordControl?.hasError('required')">Password is required.</div>
+                </div>
+            </div>
+            <div class="field">
+                <button [disabled]="userForm.invalid">Sign in</button>
+            </div>
+        </form>
+        <!-- <div class="image">
+            <img src="../assets/images/screen2.png" alt="">
+        </div> -->
+    </div>
+</div>

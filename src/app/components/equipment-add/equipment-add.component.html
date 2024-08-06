@@ -1,0 +1,63 @@
+<div class="overlay" id="overlayAdd">
+    <div class="info-detail">
+        <div class="remove" (click)="removeEquipmentAddPopup()">
+            <i class="fa-solid fa-xmark"></i>
+        </div>
+        <form [formGroup]="equimentAddForm" (ngSubmit)="addEquipment()">
+            <p class="title">Add New Equipment</p>
+            <div class="img-area">
+                <img [src]="imageUrl || '../assets/images/upload.png'" alt="">
+                <div class="btn-change-img">
+                    <input type="file" (change)="onImageChange($event)">
+                    <span>Choose image</span>
+                </div>
+            </div>
+            <div class="vertical-scroll">
+                <div class="info-equipment">
+                    <div class="info"> 
+                        <label>ID</label>
+                        <div>
+                            <input type="text" formControlName="id">
+                            <span [ngClass]="{
+                                'validating':idControl?.valid && (idControl?.dirty || idControl?.touched),
+                                'invalidating': idControl?.invalid && (idControl?.dirty || idControl?.touched)
+                            }"></span>
+                        </div>
+                        <div *ngIf="idControl?.invalid && (idControl?.dirty || idControl?.touched)">
+                            <div class="invalid" *ngIf="idControl?.hasError('required')">Id is required.</div>
+                        </div>
+                    </div>
+                    <div class="info">
+                        <label>Name</label>
+                        <div>
+                            <input type="text" formControlName="name">
+                            <span [ngClass]="{
+                                'validating':nameControl?.valid && (nameControl?.dirty || nameControl?.touched),
+                                'invalidating': nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)
+                            }"></span>
+                        </div>
+                        <div *ngIf="nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)">
+                            <div class="invalid" *ngIf="nameControl?.hasError('required')">Name is required.</div>
+                        </div>
+                    </div>
+                    <div class="info description">
+                        <label>Description</label>
+                        <div>
+                            <textarea formControlName="description"></textarea>
+                            <span [ngClass]="{
+                                'validating':descriptionControl?.valid && (descriptionControl?.dirty || descriptionControl?.touched),
+                                'invalidating': descriptionControl?.invalid && (descriptionControl?.dirty || descriptionControl?.touched)
+                            }"></span>
+                        </div>
+                        <div *ngIf="descriptionControl?.invalid && (descriptionControl?.dirty || descriptionControl?.touched)">
+                            <div class="invalid" *ngIf="descriptionControl?.hasError('required')">Desciption is required.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="option">
+                <button [disabled]="equimentAddForm.invalid">Add</button>
+            </div>
+        </form>
+    </div>
+</div>

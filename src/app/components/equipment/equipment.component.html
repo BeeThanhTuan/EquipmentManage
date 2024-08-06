@@ -1,0 +1,339 @@
+<div class="container">
+    <div class="content">
+        <div class="header">
+            <div class="search-box">
+                <input type="text" name="" placeholder="Search at here...">
+                <i class='bx bx-search'></i>
+            </div>
+            <div class="btn-add">
+                <button (click)="openEquipmentAddPopup()"><i class="fa-solid fa-plus"></i>Add </button>
+            </div>
+        </div>
+        <div class="vertical-scroll">
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Status</th>
+                        <th>Borrower ID</th>
+                        <th>Date Borrower</th>
+                        <th class="options-box">Options</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/manage/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen" (click)="openEquipmentUpdatePopup()"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="borrowed">borrowed</span></td>
+                        <td><span>N/A</span></td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a routerLink="/manage/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>MT0123</td>
+                        <td>Book A</td>
+                        <td class="status"> <span class="instock">instock</span></td>
+                        <td>N/A</td>
+                        <td>12/23/2024</td>
+                        <td class="options-box">
+                            <div class="options">
+                                <a href=""><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen"></i>
+                                <i class="fa-solid fa-trash"></i>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<app-equipment-add/>
+<app-equipment-update>

@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap');
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    min-width: 600px;
+    max-width: 1528px;
+    height: 100vh;
+    max-height: 875px;
+    background-color: var(--dark-bg-color);
+    overflow: hidden;
+    display: flex;
+}
+nav{
+    width: 120px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    max-height: 875px;
+
+}
+nav .logo{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo div{
+    width: 71px;
+    height: 71px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 20px;
+    background-color: var(--dark-bg-color-undertone);
+    border-radius: 50%;
+}
+nav .logo p{
+    font-family: "Gochi Hand", cursive;
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    color: transparent; 
+    background-image: var(--bg-raial-gradient-undertone);
+    background-clip: text;
+    -webkit-background-clip: text;
+
+}
+nav ul {
+    background-color: var(--dark-bg-color-undertone);
+    padding:20px 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    border-radius: 35px;
+    margin: 20px 0px;
+}
+nav ul li{
+    list-style: none;
+}
+ul li a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 13px;
+    border-radius: 50%;
+    text-decoration: none;
+}
+ul li a[class="active"]{
+    background-image: var(--bg-raial-gradient-undertone);
+    box-shadow: 0px 0px 3px 3px #5771bf;
+    border: 1px solid #fff;
+}
+li a i{
+    font-size: 20px;
+    color: var(--dark-color-undertone);
+    pointer-events: none;
+}
+li a:not(.active):hover i{
+    filter: drop-shadow(0px 0px 10px rgba(0, 223, 255, 1) )
+}
+.logo,.signout{
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+.signout i{
+    font-size: 25px;
+    background-color: var(--dark-bg-color-undertone);
+    padding: 23px;
+    border-radius: 50%;
+    transform: rotate(180deg);
+    color: rgb(214, 55, 55);
+}
+.signout i:hover{
+    filter: brightness(180%);
+}
+.signout i:active{
+    transform: scale(1.05) rotate(180deg);
+}
+
+.main{
+    width: calc(100% - 120px);
+    color: var(--dark-color-undertone);
+    display: flex;
+    flex-direction: column;
+}
+.main .header{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .title{
+    width: fit-content;
+}
+.title h2{
+    text-transform: capitalize;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: var(--dark-color-undertone);
+}
+.title p{
+    font-size: 13px;
+    color: var(--dark-color);
+    font-weight: 300;
+    letter-spacing: 0.7px;
+}
+
+.header .info-user{
+    width: fit-content;
+    padding: 5px 15px;
+    background-color: var(--dark-bg-color-undertone);
+    border-radius: 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin: 20px 20px;
+    margin-right: 25px;
+}
+.header .info-user:hover{
+    background-color: #3e3949;
+}
+.header .info-user:active{
+    transform: scale(1.02);
+}
+.info-user img{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: contain;
+}
+
+.info-user .info p{
+    font-size: 14px;
+    color: var(--dark-color);
+    height: 24px;
+}
+.info-user .info p[class="name"]{
+    font-size: 18px;
+    letter-spacing: 0.3px;
+    color: var(--dark-color-undertone)
+}
+.info-user i{
+    font-size: 25px;
+}
+
+

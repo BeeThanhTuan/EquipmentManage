@@ -1,0 +1,105 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.content{
+    display: flex;
+}
+.content form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    color: var(--dark-bg-color);
+    background-color: #fff;
+    padding: 50px;
+}
+
+form .title {
+    margin-bottom: 20px;
+}
+.title p{
+    font-size: 25px;
+}
+.title p.name{
+    font-size: 20px;
+}
+
+form .field {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    width: 300px;
+}
+
+.field label {
+    font-size: 17px
+}
+
+.field div {
+    width: 300px;
+    position: relative;
+}
+
+.field div input {
+    font-size: 14px;
+    padding: 0px 13px;
+    height: 35px;
+    width: 100%;
+}
+
+.field div span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 6px;
+    height: 100%;
+}
+
+.field div span.invalidating {
+    background-color: rgb(197, 59, 59);
+}
+
+.field div span.validating {
+    background-color: rgb(36, 129, 72);
+}
+
+.invalid {
+    font-size: 13px;
+    color: rgb(197, 59, 59);
+}
+
+.field button {
+    margin-top: 20px;
+    height: 37px;
+    border: none;
+    font-size: 15px;
+    cursor: pointer;
+    background-color: var(--dark-bg-color);
+    color: #fff;
+}
+
+.field button:hover {
+    filter: brightness(1.3);
+}
+
+.field button:active {
+    transform: scale(1.05);
+}
+
+.field button:disabled {
+    cursor: no-drop;
+    transform: scale(1);
+    filter: brightness(1) blur(0.6px);
+}
+
+.content .image{
+    width: 350px;
+}
+
+.image img{
+    width: 100%;
+    height: 100%;
+}

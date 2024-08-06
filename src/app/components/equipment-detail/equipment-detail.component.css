@@ -1,0 +1,156 @@
+.container{
+    width: 100%;
+    min-width: 500px;
+    height: calc(100vh - 120px);
+    padding-right: 25px;
+}
+.content{
+    width: 100%;
+    height: 100%;
+    max-height: 770px;
+    background-color: var(--dark-bg-color-undertone);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.infor-detail{
+    padding: 20px;
+    border-radius: 28px;
+    margin: 0px 20px;
+}
+.infor-area{
+    display: flex;
+}
+.infor-detail .img-area{
+    width: 350px;
+    height: 450px;
+}
+.img-area img{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    filter: brightness(85%);
+}
+.infor-detail .infor{
+    position: relative;
+    margin-left: 30px;
+    width: 410px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 17px;
+    padding-right: 25px;
+    border-radius: 12px;
+}
+.infor p span{
+    margin-left: 10px;
+    padding: 2px 15px;
+    border-radius: 8px;
+}
+.infor p span[class="instock"]{
+    background-image: radial-gradient(
+        farthest-corner circle at 185% 0% in oklab,
+        rgb(221, 221, 221) -82% -82%, #01971c 100%
+    );
+}
+.infor p span[class="borrowed"]{
+    background-image: radial-gradient(
+        farthest-corner circle at 185% 0% in oklab,
+        rgb(221, 221, 221) -82% -82%, #970101 100%
+    );
+}
+.infor .options{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    padding-right: 25px;
+    align-items: flex-end;
+    justify-content: space-between;
+    padding-bottom: 2px;
+}
+.options .borrowed {
+    display: flex;
+    gap: 20px
+}
+.options div button, .borrowed a{
+    height: 40px;
+    padding: 0px 25px;
+    font-size: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+}
+.options div button:hover{
+    filter: brightness(130%);
+}
+.options div button:active{
+    transform: scale(1.05);
+}
+.options .btn-update button{
+    background-image: var(--bg-raial-gradient);
+    color: var(--dark-bg-color);
+}
+.options .instock button, 
+.options .borrowed button, .borrowed a{
+    text-decoration: none;
+    padding: 0px 30px;
+    background-color: transparent;
+    color: var(--dark-bg-color);
+    border: 1px solid #3668ff; 
+}
+.options .instock button:hover,
+.options .borrowed button:hover, .borrowed a:hover{
+    border: none;
+    background-image: var(--bg-raial-gradient);
+    filter: brightness(130%);
+
+}
+.options .instock button:hover i,
+.options .borrowed button:hover i, .borrowed a:hover i{
+    color: var(--dark-bg-color);
+}
+.options div button i, .borrowed a i{
+    font-size: 17px;
+    color: transparent; 
+    background-image: var(--bg-raial-gradient);
+    background-clip: text;
+    -webkit-background-clip: text;
+}
+@media (max-width: 950px) {
+    .infor-detail{
+        max-height: 450px;
+        padding: 0px 10px;
+        overflow-y: scroll;
+        scrollbar-color: transparent;
+        scroll-behavior: smooth;
+    }
+    .infor-detail::-webkit-scrollbar{
+        width: 5px;
+        height: 5px;
+    } 
+    .infor-detail::-webkit-scrollbar-thumb,
+    .infor-detail::-webkit-scrollbar-track{
+        background-color:var(--dark-color);
+    }
+    .infor-detail::-webkit-scrollbar-track-piece{
+        background-color: var(--dark-bg-color);
+    }
+    .infor-area{
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        align-items: center;
+    }
+    .infor .options{
+        position: relative;
+        padding-right: 10px;
+    }
+}
