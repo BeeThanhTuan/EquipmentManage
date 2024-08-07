@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
@@ -15,11 +15,13 @@ import { EquipmentDetailComponent } from './components/equipment-detail/equipmen
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { UpdateEmployeeComponent } from './components/employee-update/update-employee.component';
 import { PhoneNumberPipe } from './custom-pipe/phone-number.pipe';
+import { EmailPipe } from './custom-pipe/email.pipe';
 import { EmployeeAddComponent } from './components/employee-add/employee-add.component';
 import { EquipmentAddComponent } from './components/equipment-add/equipment-add.component';
 import { EquipmentUpdateComponent } from './components/equipment-update/equipment-update.component';
 import { ManageComponent } from './components/manage/manage.component';
-import { NgToastModule } from 'ng-angular-popup';
+import { ToastrModule } from 'ngx-toastr';
+import { NamePipe } from './custom-pipe/name.pipe';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { NgToastModule } from 'ng-angular-popup';
     EmployeeAddComponent,
     EquipmentAddComponent,
     EquipmentUpdateComponent,
-    ManageComponent
+    ManageComponent,
+    EmailPipe,
+    NamePipe,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +48,18 @@ import { NgToastModule } from 'ng-angular-popup';
     ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
-    // NgToastModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-top-right',
+      timeOut: 2000,
+      progressBar: true,
+      progressAnimation: 'decreasing', 
+      closeButton: true,
+      enableHtml: true,
+      toastClass: 'ngx-toastr',
+      titleClass: 'toast-title',
+      messageClass: 'toast-message',
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]

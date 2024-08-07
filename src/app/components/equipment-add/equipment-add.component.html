@@ -3,7 +3,7 @@
         <div class="remove" (click)="removeEquipmentAddPopup()">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <form [formGroup]="equimentAddForm" (ngSubmit)="addEquipment()">
+        <form [formGroup]="equimentAddForm" (ngSubmit)="addNewEquipment()">
             <p class="title">Add New Equipment</p>
             <div class="img-area">
                 <img [src]="imageUrl || '../assets/images/upload.png'" alt="">

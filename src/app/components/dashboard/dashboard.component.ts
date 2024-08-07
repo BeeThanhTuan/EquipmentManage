@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { response } from 'express';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -6,12 +8,16 @@ import { Component } from '@angular/core';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  ratio!: number ;
-  displayedRatio!: number ;
-  totalEquipment!:number
-  totalEquipmentActive!:number
+  name!:string;
+  ratio!: number;
+  displayedRatio!: number;
+  totalEquipment!:number;
+  totalEquipmentActive!:number;
+
+  constructor(private authService: AuthService){}
   
   ngOnInit(): void {
+    this.getNameUser();
     this.totalEquipment = 20;
     this.totalEquipmentActive = 10;
     let precent = (this.totalEquipmentActive/this.totalEquipment) * 100;
@@ -31,5 +37,12 @@ export class DashboardComponent {
         }
       }, 7);
     }, 100);
+  }
+
+  getNameUser(){
+   const id = this.authService.getIdFromToken()!;
+   this.authService.getInfoUser(id).subscribe((response)=>{
+    this.name =  response.Name;
+   })
   }
 }

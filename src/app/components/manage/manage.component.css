@@ -85,7 +85,7 @@ li a i{
 li a:not(.active):hover i{
     filter: drop-shadow(0px 0px 10px rgba(0, 223, 255, 1) )
 }
-.logo,.signout{
+.logo{
     width: 100px;
     height: 100px;
     display: flex;
@@ -93,20 +93,6 @@ li a:not(.active):hover i{
     align-items: center;
     cursor: pointer;
     margin-bottom: 20px;
-}
-.signout i{
-    font-size: 25px;
-    background-color: var(--dark-bg-color-undertone);
-    padding: 23px;
-    border-radius: 50%;
-    transform: rotate(180deg);
-    color: rgb(214, 55, 55);
-}
-.signout i:hover{
-    filter: brightness(180%);
-}
-.signout i:active{
-    transform: scale(1.05) rotate(180deg);
 }
 
 .main{

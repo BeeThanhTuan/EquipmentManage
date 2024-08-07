@@ -20,9 +20,7 @@
                 </a>
             </li>
         </ul>
-        <div class="signout">
-          <i class='bx bx-log-out-circle'></i>
-        </div>
+        <div style="height: 100px;"></div>
     </nav>
     <div class="main">
         <div class="header">
@@ -33,8 +31,8 @@
             <div class="info-user" (click)="openProfilePopup()">
               <img src="../assets/images/employee.png" >
               <div class="info">
-                <p class="name">Antoni</p>
-                <p>@gmail</p>
+                <p class="name">{{name | namePipe}}</p>
+                <p>{{email | emailPipe}}</p>
               </div>
               <i class='bx bx-chevron-down'></i>
             </div>
@@ -42,4 +40,4 @@
         <router-outlet></router-outlet>
     </div>
 </div>
-<app-profiler/>
+<app-profiler [nameUser]="name" [emailUser]="email"/>

@@ -8,7 +8,6 @@ import {jwtDecode} from 'jwt-decode';
   providedIn: 'root'
 })
 export class AuthService {
-
   private REST_API_SERVER = 'http://localhost:3000';
   private readonly TOKEN_KEY = 'ntt-secret-key';
   private httpOptions = {
@@ -21,9 +20,19 @@ export class AuthService {
     private cookieService: CookieService
   ) {}
 
-  public login(credentials: {email: string; password: string;}): Observable<any> {
+  login(credentials: {email: string; password: string;}): Observable<any> {
     const url = `${this.REST_API_SERVER}/api/login`;
-    return this.httpClient.post(url, credentials, this.httpOptions);
+    return this.httpClient.post<any>(url, credentials, this.httpOptions);
+  }
+
+  getInfoUser(id: string):Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/account/${id}`;
+    return this.httpClient.get<any>(url);
+  }
+
+  updateName(userInfo: {email: string; name: string;}): Observable<any> {
+    const url = `${this.REST_API_SERVER}/api/account/updateName`;
+    return this.httpClient.put<any>(url, userInfo, this.httpOptions);
   }
 
   getTokenCookie(): string | null {
@@ -47,12 +56,11 @@ export class AuthService {
     }
   }
 
-  
-  getNameFromToken(): string | null {
+  getIdFromToken(): string | null {
     const token = this.getTokenCookie();
     if (token) {
       const decoded = this.decodeToken(token);
-      return decoded ? decoded.name: null;
+      return decoded ? decoded.id : null;
     }
     return null;
   }

@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
+import { EquipmentService } from 'src/app/services/equipment.service';
+import { showToastSuccess } from 'src/app/toast-message/toastr';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-equipment-add',
@@ -12,13 +16,12 @@ export class EquipmentAddComponent {
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private location: Location, private toastService: ToastrService) {
     this.equimentAddForm = this.formBuilder.group({
       id: ['', Validators.required],
       name: ['', Validators.required],
       description: ['', Validators.required],
       image: [null],
-      status: [0]
     });
   }
   get idControl() {
@@ -57,8 +60,19 @@ export class EquipmentAddComponent {
     return null;
   }
 
-  addEquipment() {
-    console.table(this.equimentAddForm.value);
+  addNewEquipment() {
+    console.log(this.equimentAddForm.value);
+    const newEquipment = new FormData();
+    newEquipment.append('id', this.equimentAddForm.get('id')?.value);
+    newEquipment.append('name', this.equimentAddForm.get('name')?.value);
+    newEquipment.append('description', this.equimentAddForm.get('description')?.value);
+    newEquipment.append('image', this.equimentAddForm.get('image')?.value);
+    this.equipmentService.createNewEquipment(newEquipment).subscribe(
+      () =>{
+        showToastSuccess(this.toastService, 'Add new equipment success!');  
+        // window.location.reload();
+      }
+    )
   }
 
   removeEquipmentAddPopup() {

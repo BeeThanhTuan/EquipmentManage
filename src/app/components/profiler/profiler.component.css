@@ -24,7 +24,7 @@
 }
 .profile {
     position: relative;
-    width: 350px;
+    min-width: 350px;
     padding-bottom: 30px;
     background-color: var(--dark-bg-color);
     border-radius: 20px;
@@ -119,6 +119,8 @@
     align-items: center;
 }
 .btn-edit div {
+    position: relative;
+    top: -100%;
     width: 50px;
     height: 50px;
     display: flex;
@@ -149,6 +151,7 @@
     height: 60px;
     color: var(--dark-color-undertone);;
     padding: 0px 33px;
+    margin-top: 5px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -161,7 +164,7 @@
 }
 
 .profile .info p[class="name"] {
-    font-size: 27px;
+    font-size: 25px;
     font-weight: 600;
     letter-spacing: 1px;
     color: var(--dark-color-undertone);;
@@ -206,6 +209,39 @@
     font-weight: 400;
     background-color: var(--dark-bg-color-undertone);
 }
+
+.logout-area{
+    width: 100%;
+    padding: 0px 30px;
+    margin-top: 20px;
+}
+.logout-area.active{
+    display: none;
+}
+.logout-area button{
+    padding: 10px 35px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 17px;
+    background-color: var(--dark-bg-color-undertone);
+    border: none;
+    border-radius: 5px;
+    color: var(--dark-color);
+    font-weight: 500;
+    transition: 0.3s
+}
+
+.logout-area button:hover{
+    background-image: var(--bg-raial-gradient);
+    color: var(--dark-bg-color);
+}
+.logout-area button:active{
+    transform: scale(1.05);
+}
+
 form div div .invalid{
     font-family: "Poppins", sans-serif;
     margin-top: 5;

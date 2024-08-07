@@ -7,11 +7,11 @@ import { EquipmentComponent } from './components/equipment/equipment.component';
 import { EquipmentDetailComponent } from './components/equipment-detail/equipment-detail.component';
 import { EmployeeDetailComponent } from './components/employee-detail/employee-detail.component';
 import { ManageComponent } from './components/manage/manage.component';
-
+import { authGuard } from './guard/auth.guard';
 const routes: Routes = [
   {path: '', redirectTo: 'login', pathMatch:'full'},
   {path: 'login', component: LoginComponent},
-  {path: 'manage', component: ManageComponent, children:[
+  {path: 'manage', component: ManageComponent, canActivate:[authGuard], children:[
     {path: '', redirectTo: 'dashboard', pathMatch:'full'},
     {path: 'dashboard', component: DashboardComponent},
     {path: 'equipment', component: EquipmentComponent},
