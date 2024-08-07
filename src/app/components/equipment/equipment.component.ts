@@ -23,6 +23,10 @@ export class EquipmentComponent {
     )
   }
 
+  getEquipmentFormChild(equipment: Object){
+    this.listEquipment.unshift(equipment);
+  }
+
   openEquipmentAddPopup(){
     const overlay = document.getElementById('overlayAdd') as HTMLElement;
     overlay.classList.add('active');

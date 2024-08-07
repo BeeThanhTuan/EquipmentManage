@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
@@ -15,6 +15,7 @@ export class EquipmentAddComponent {
   equimentAddForm: FormGroup;
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
+  @Output() equipment: EventEmitter<Object> = new EventEmitter<Object>();
 
   constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private location: Location, private toastService: ToastrService) {
     this.equimentAddForm = this.formBuilder.group({
@@ -52,6 +53,11 @@ export class EquipmentAddComponent {
     }
   }
 
+  removeImage(){
+    this.imageUrl = '';
+    this.equimentAddForm.get('image')?.setValue(null);
+  }
+
   getImage() {
     const fileControl = this.equimentAddForm.get('image');
     if (fileControl) {
@@ -61,16 +67,16 @@ export class EquipmentAddComponent {
   }
 
   addNewEquipment() {
-    console.log(this.equimentAddForm.value);
     const newEquipment = new FormData();
     newEquipment.append('id', this.equimentAddForm.get('id')?.value);
     newEquipment.append('name', this.equimentAddForm.get('name')?.value);
     newEquipment.append('description', this.equimentAddForm.get('description')?.value);
     newEquipment.append('image', this.equimentAddForm.get('image')?.value);
     this.equipmentService.createNewEquipment(newEquipment).subscribe(
-      () =>{
+      (respone) =>{
+        this.equipment.emit(respone.data);
+        this.removeEquipmentAddPopup();
         showToastSuccess(this.toastService, 'Add new equipment success!');  
-        // window.location.reload();
       }
     )
   }

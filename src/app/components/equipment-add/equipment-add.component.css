@@ -60,41 +60,95 @@ form p.title {
     font-weight: 500;
 }
 
-form .img-area {
-    display: flex;
-    width: fit-content;
+form .upload-area {
     position: relative;
+    display: flex;
+    gap: 30px;
+    align-items: flex-end;
+    width: 100%;
     margin-top: 10px;
+    box-sizing: border-box;
 }
 
-.img-area img {
-    width: 150px;
-    height: 120px;
+.upload-box{
+    width: 302.5px;
+    height: 170px;
+    position: relative;
+}
+.upload-box .upload{
+    width: 100%;
+    height: 100%;
     border-radius: 4px;
-    border: 2px solid var(--dark-color-undertone);
+    border: 2px dashed var(--dark-color-undertone);
+    background-color: var(--dark-bg-color-undertone);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap:5px;
+    z-index: 1;
+}
+
+.upload-box:hover .upload {
+    background-color: var(--dark-bg-color-undertone);
+    border: 2px dashed #2b75e4;
+    color: #2b75e4;
+}
+.upload i{
+    font-size: 25px;
+}
+.upload p{
+    font-size: 13px;
+}
+.upload-box .img-choosed{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 101%;
+    height: 102%;
+    z-index: 2;
+    transform: translate(-50%, -50%);
+}
+.img-choosed img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    box-shadow: 0px 0px 5px 1px black;
     object-fit: cover;
     object-position: center;
-    pointer-events: none;
 }
 
-.btn-change-img {
-    position: absolute;
+button{
+    width: 100px;
+    height: 35px;
+    cursor: pointer;
+    font-size: 15px;
+    color: var(--dark-color);
+    background-color: var(--dark-bg-color-undertone);
+    border: 1px solid var(--dark-color);
     border-radius: 3px;
-    right: -90%;
-    bottom: 0;
-    border: 1px solid #0034ce;
-    background-color: var(--dark-bg-color);
+}
+button:hover{
+    color: rgb(211, 76, 76);
+    border: 1px solid rgb(211, 76, 76);
+}
+.upload-box .btn-choose-img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 3;
 }
 
-.btn-change-img:hover {
-    border: none;
-    background-image: var(--bg-raial-gradient);
-}
-
-.btn-change-img input {
+.btn-choose-img input {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -254,8 +308,7 @@ form .img-area {
         width: 400px;
     }
     .vertical-scroll {
-        margin-top: 10px;
-        max-height: 350px;
+        max-height: 500px;
         overflow: hidden;
         overflow-y: scroll;
     }
@@ -275,14 +328,18 @@ form .img-area {
         justify-content: center;
         align-items: center;
     }
-    .info-employee {
+    form .upload-area{
+        margin-left: 3px;
         flex-direction: column;
+        align-items: normal;
+        gap: 20px;
     }
-    .info-equipment.info {
-        width: 100%;
-        padding: 0 10px;
+
+    .description textarea {
+        position: relative;
+        padding: 10px 15px;
+        max-width: 302px;
+        min-width: 302px;
     }
-    .info-equipment .description {
-        width: 302.5px;
-    }
+
 }

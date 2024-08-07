@@ -5,16 +5,24 @@
         </div>
         <form [formGroup]="equimentAddForm" (ngSubmit)="addNewEquipment()">
             <p class="title">Add New Equipment</p>
-            <div class="img-area">
-                <img [src]="imageUrl || '../assets/images/upload.png'" alt="">
-                <div class="btn-change-img">
-                    <input type="file" (change)="onImageChange($event)">
-                    <span>Choose image</span>
-                </div>
-            </div>
             <div class="vertical-scroll">
+                <div class="upload-area">
+                    <div class="upload-box">
+                        <div class="upload">
+                            <i class="fa-solid fa-upload"></i>
+                            <p>Choose image</p>
+                        </div>
+                        <div class="img-choosed" *ngIf="imageUrl">
+                            <img [src]="imageUrl" alt="">
+                        </div>
+                        <div class="btn-choose-img">
+                            <input type="file" (change)="onImageChange($event)">
+                        </div>
+                    </div>
+                    <button *ngIf="imageUrl" (click)="removeImage()">Cancel</button>
+                </div>
                 <div class="info-equipment">
-                    <div class="info"> 
+                    <div class="info">
                         <label>ID</label>
                         <div>
                             <input type="text" formControlName="id">

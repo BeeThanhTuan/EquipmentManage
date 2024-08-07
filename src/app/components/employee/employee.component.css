@@ -79,6 +79,7 @@
 .vertical-scroll {
     width: 100%;
     height: calc(100vh - 162px);
+    max-height: 710px;
     overflow: hidden;
     overflow-y: scroll;
     scrollbar-color: transparent;
