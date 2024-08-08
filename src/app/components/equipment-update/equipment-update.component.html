@@ -1,22 +1,30 @@
 <div class="overlay" id="overlayUpdate">
-    <div class="info-detail">
+    <div class="info-detail" (click)="removeSearchIDEmployeeOverLay($event)">
         <div class="remove" (click)="removeEmquimentUpdatePopup()">
             <i class="fa-solid fa-xmark"></i>
         </div>
         <form [formGroup]="equimentUpdateForm" (ngSubmit)="updateEquipment()">
             <p class="title">Update Equipment</p>
-            <div class="img-area">
-                <img [src]="imageUrl || '../assets/images/upload.png'" alt="">
-                <div class="btn-change-img">
-                    <input type="file" (change)="onImageChange($event)">
-                    <span>Choose image</span>
-                </div>
-            </div>
             <div class="vertical-scroll">
+                <div class="upload-area">
+                    <div class="upload-box">
+                        <div class="upload">
+                            <i class="fa-solid fa-upload"></i>
+                            <p>Choose image</p>
+                        </div>
+                        <div class="img-choosed" *ngIf="imageUrl">
+                            <img [src]="imageUrl" alt="">
+                        </div>
+                        <div class="btn-choose-img">
+                            <input type="file" (change)="onImageChange($event)">
+                        </div>
+                    </div>
+                    <button *ngIf="imageUrl" (click)="removeImage()">Cancel</button>
+                </div>
                 <div class="info-equipment">
-                    <div class="info"> 
+                    <div class="info">
                         <label>ID</label>
-                        <input type="text" formControlName="id">
+                        <input style="pointer-events: none;" type="text" formControlName="id">
                     </div>
                     <div class="info">
                         <label>Name</label>
@@ -42,6 +50,33 @@
                         </div>
                         <div *ngIf="descriptionControl?.invalid && (descriptionControl?.dirty || descriptionControl?.touched)">
                             <div class="invalid" *ngIf="descriptionControl?.hasError('required')">Desciption is required.</div>
+                        </div>
+                    </div>
+                    <div class="info employeeBorrowed">
+                        <label>ID Borrowed</label>
+                        <div>
+                            <input type="text" readonly formControlName="idEmployee" (click)="openSearchIDEmployee(); stopPropagation($event)">
+                        </div>
+                        <div class="select-box" id="searchBoxEmployee">
+                            <div class="search">
+                                <input type="text" placeholder="Search..." id="inputSearchIDEmployee" formControlName="query" >
+                                <i class='bx bx-search'></i>
+                            </div>
+                            <div class="list-option">
+                                <ul class="list-employee">
+                                    <li (click)="getIDEmployee($event)">
+                                        <p class="id-employee">-None-</p>
+                                    </li>
+                                    <li (click)="getIDEmployee($event)">
+                                        <p class="id-employee">NV1233</p>
+                                        <p>Nguyễn Thanh Tuấn</p>
+                                    </li>
+                                    <li (click)="getIDEmployee($event)">
+                                        <p class="id-employee">NV1233</p>
+                                        <p>Nguyễn Thanh Tuấn</p>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>

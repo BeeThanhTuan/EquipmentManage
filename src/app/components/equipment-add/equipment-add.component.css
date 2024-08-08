@@ -66,7 +66,7 @@ form .upload-area {
     gap: 30px;
     align-items: flex-end;
     width: 100%;
-    margin-top: 10px;
+    margin-top: 20px;
     box-sizing: border-box;
 }
 
@@ -122,7 +122,7 @@ form .upload-area {
     object-position: center;
 }
 
-button{
+.upload-area button{
     width: 100px;
     height: 35px;
     cursor: pointer;
@@ -132,7 +132,7 @@ button{
     border: 1px solid var(--dark-color);
     border-radius: 3px;
 }
-button:hover{
+.upload-area button:hover{
     color: rgb(211, 76, 76);
     border: 1px solid rgb(211, 76, 76);
 }
@@ -171,7 +171,7 @@ button:hover{
 }
 
 .info-equipment {
-    margin-top: 10px;
+    margin-top: 20px;
     width: 100%;
     display: flex;
     flex-wrap: wrap;

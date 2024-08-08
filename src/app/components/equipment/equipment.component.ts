@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { response } from 'express';
 import { EquipmentService } from 'src/app/services/equipment.service';
 
 @Component({
@@ -9,10 +8,21 @@ import { EquipmentService } from 'src/app/services/equipment.service';
 })
 export class EquipmentComponent {
   listEquipment :any[] = [];
+  equipment: any;
+  index!: number;
+
   constructor(private equipmentService: EquipmentService){}
 
   ngOnInit(): void {
    this.getAllEquipment()
+  }
+
+  getIndex(i: number){
+    this.index = i;
+  }
+
+  getAndReplaceNewEquipment(newEquipment: Object){
+    this.listEquipment[this.index] = newEquipment;
   }
 
   getAllEquipment(){
@@ -32,7 +42,8 @@ export class EquipmentComponent {
     overlay.classList.add('active');
   }
 
-  openEquipmentUpdatePopup(){
+  openEquipmentUpdatePopup(equipment: Object){
+    this.equipment = equipment
     const overlay = document.getElementById('overlayUpdate') as HTMLElement;
     overlay.classList.add('active');
   }

@@ -3,7 +3,7 @@
         <div class="remove" (click)="removeEquipmentAddPopup()">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <form [formGroup]="equimentAddForm" (ngSubmit)="addNewEquipment()">
+        <form [formGroup]="equipmentAddForm" (ngSubmit)="addNewEquipment()">
             <p class="title">Add New Equipment</p>
             <div class="vertical-scroll">
                 <div class="upload-area">
@@ -25,7 +25,7 @@
                     <div class="info">
                         <label>ID</label>
                         <div>
-                            <input type="text" formControlName="id">
+                            <input type="text" formControlName="id" (input)="formatID($event)">
                             <span [ngClass]="{
                                 'validating':idControl?.valid && (idControl?.dirty || idControl?.touched),
                                 'invalidating': idControl?.invalid && (idControl?.dirty || idControl?.touched)
@@ -33,6 +33,9 @@
                         </div>
                         <div *ngIf="idControl?.invalid && (idControl?.dirty || idControl?.touched)">
                             <div class="invalid" *ngIf="idControl?.hasError('required')">Id is required.</div>
+                            <div class="invalid" *ngIf="idControl?.hasError('minlength')">ID must be at least 6 characters long.</div>
+                            <div class="invalid" *ngIf="idControl?.hasError('idExists')">Exists id.</div>
+
                         </div>
                     </div>
                     <div class="info">
@@ -64,7 +67,7 @@
                 </div>
             </div>
             <div class="option">
-                <button [disabled]="equimentAddForm.invalid">Add</button>
+                <button [disabled]="equipmentAddForm.invalid">Add</button>
             </div>
         </form>
     </div>

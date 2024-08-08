@@ -22,16 +22,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr *ngFor="let equipment of listEquipment">
+                    <tr *ngFor="let equipment of listEquipment, let i = index ">
                         <td>{{equipment.ID}}</td>
                         <td>{{equipment.Name}}</td>
-                        <td class="status"> <span [class]="equipment.Status ? 'instock': 'borrowed'">{{equipment.Status ? 'instock': 'borrowed'}}</span></td>
-                        <td>{{equipment.IDEquipment ? equipment.IDEquipment: 'N/A'}}</td>
+                        <td class="status"> <span [class]="equipment.Status ? 'borrowed': 'instock'">{{equipment.Status ? 'borrowed': 'instock'}}</span></td>
+                        <td>{{equipment.IDEmployee  ? equipment.IDEmployee : 'N/A'}}</td>
                         <td>{{equipment.DateBorrowed ? equipment.DateBorrowed: 'N/A'}}</td>
                         <td class="options-box">
                             <div class="options">
-                                <a routerLink="/manage/equipment/id"><i class="fa-solid fa-circle-info"></i></a>
-                                <i class="fa-solid fa-pen" (click)="openEquipmentUpdatePopup()"></i>
+                                <a routerLink="/manage/equipment/{{equipment.ID}}"><i class="fa-solid fa-circle-info"></i></a>
+                                <i class="fa-solid fa-pen" (click)="openEquipmentUpdatePopup(equipment); getIndex(i)"></i>
                                 <i class="fa-solid fa-trash"></i>
                             </div>
                         </td>
@@ -42,4 +42,4 @@
     </div>
 </div>
 <app-equipment-add (equipment)="getEquipmentFormChild($event)"/>
-<app-equipment-update/>
+<app-equipment-update [equipment]="equipment" (newEquipment)="getAndReplaceNewEquipment($event)"/>

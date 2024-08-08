@@ -10,6 +10,7 @@ import {jwtDecode} from 'jwt-decode';
 export class AuthService {
   private REST_API_SERVER = 'http://localhost:3000';
   private readonly TOKEN_KEY = 'ntt-secret-key';
+  
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
@@ -40,7 +41,9 @@ export class AuthService {
   }
 
   setTokenCookie(token: string): void {
-    this.cookieService.set(this.TOKEN_KEY, token, { expires: 1, path: '/' });
+    const now = new Date();
+    const expireTime = new Date(now.getTime() + 2 * 60 * 60 * 1000); // 2 hours from now
+    this.cookieService.set(this.TOKEN_KEY, token, { expires: expireTime, path: '/' });
   }
 
   removeTokenCookie(): void {

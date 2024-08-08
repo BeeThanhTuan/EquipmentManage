@@ -107,6 +107,7 @@ thead {
     height: 51px;
     pointer-events: none;
     background-color: var(--dark-bg-color-undertone);
+    border-bottom: 1px solid var(--dark-color-undertone);
 }
 
 th,

@@ -21,13 +21,30 @@ export class EquipmentService {
     )
   }
 
+  getAllEquipmentBorrowed():Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/equipments/borrowed`;
+    return this.httpClient.get<any>(url).pipe(
+      map((response:any) => response.reverse()) 
+    )
+  }
+
   getEquipmentByID(id: string):Observable<any>{
-    const url = `${this.REST_API_SERVER}/api/equipment/:id`;
+    const url = `${this.REST_API_SERVER}/api/equipment/${id}`;
     return this.httpClient.get<any>(url);
+  }
+
+  checkEquipmentIdExists(id: string): Observable<boolean> {
+    const url = `${this.REST_API_SERVER}/api/equipment/check/${id}`;
+    return this.httpClient.get<boolean>(url);
   }
   
   createNewEquipment(data: FormData): Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipment`;
     return this.httpClient.post<any>(url, data);
+  }
+
+  updateEquipmentByID(id:string, data: FormData): Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/equipment/${id}`;
+    return this.httpClient.put<any>(url, data);
   }
 }
