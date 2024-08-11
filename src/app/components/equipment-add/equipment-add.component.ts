@@ -22,7 +22,7 @@ export class EquipmentAddComponent {
       id: ['', [Validators.required, Validators.minLength(6)], idExistsValidator(equipmentService)],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      image: [null],
+      image: [''],
     });
   }
 

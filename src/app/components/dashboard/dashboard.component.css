@@ -120,12 +120,11 @@ td[class="status"] {
 td[class="status"] span {
     width: fit-content;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 15px;
     padding: 3px 15px;
     font-weight: 400;
     letter-spacing: 0.1px;
-    color: var(--dark-bg-color);
-    background-image: var(--bg-borrowed);
+    color: rgb(219, 2, 2);
 }
 
 td a {

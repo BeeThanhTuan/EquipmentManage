@@ -14,10 +14,10 @@
                         <p>Date Borrowed: {{equipment.DateBorrowed}}</p>
                     </div>
                     <div class="options">
-                        <div class="instock" *ngIf="false">
+                        <div class="instock" *ngIf="equipment.Status === false">
                             <button ><i class="fa-solid fa-user-plus"></i></button>
                         </div>
-                        <div class="borrowed" *ngIf="true">
+                        <div class="borrowed" *ngIf="equipment.Status === true">
                             <button ><i class="fa-solid fa-user-minus"></i></button>
                             <a routerLink="/manage/employee/id" *ngIf="equipment.Status"><i class="fa-solid fa-user-tag" ></i></a>
                         </div>

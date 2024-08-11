@@ -18,11 +18,11 @@ export class EquipmentUpdateComponent {
   @Output() newEquipment: EventEmitter<Object> = new EventEmitter<Object>();
   constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private toastService: ToastrService) {
     this.equimentUpdateForm = this.formBuilder.group({
-      id: [{ value: null, disabled: true }],
+      id: [{ value: '', disabled: true }],
       name: ['', Validators.required],
       description: ['', Validators.required],
-      image: [null],
-      idEmployee: [null],
+      image: [''],
+      idEmployee: [''],
       query: [''],
     });
   }
@@ -43,7 +43,7 @@ export class EquipmentUpdateComponent {
     this.equimentUpdateForm.get('id')?.setValue(this.equipment.ID);
     this.equimentUpdateForm.get('name')?.setValue(this.equipment.Name);
     this.equimentUpdateForm.get('description')?.setValue(this.equipment.Description);
-    this.imageUrl = `http://localhost:3000/resources/${this.equipment.Image}`;
+    this.imageUrl = this.equipment.Image ? `http://localhost:3000/resources/${this.equipment.Image}` : '';
     const idEquipment = this.equipment.IDEmployee? this.equipment.IDEmployee: '-None-';
     this.equimentUpdateForm.get('idEmployee')?.setValue(idEquipment);
   }

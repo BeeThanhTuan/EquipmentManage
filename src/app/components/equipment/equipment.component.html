@@ -2,8 +2,8 @@
     <div class="content">
         <div class="header">
             <div class="search-box">
-                <input type="text" name="" placeholder="Search at here...">
-                <i class='bx bx-search'></i>
+                <input type="text" spellcheck="false" [formControl] = "searchText" placeholder="Search at here...">
+                <i class='bx bx-search' (click)="searchEquipments()"></i>
             </div>
             <div class="btn-add">
                 <button (click)="openEquipmentAddPopup()"><i class="fa-solid fa-plus"></i>Add </button>
@@ -15,7 +15,13 @@
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        <th>Status</th>
+                        <th class="status">
+                            <div class="status-box">
+                                <span data-status="" (click)="getAllEquipments(); getDataStatus($event)">Status</span>
+                                <i data-status="instock" class="fa-solid fa-circle instock" (click)="getAllEquipmentsInstock(); getDataStatus($event)"></i>
+                                <i data-status="borrowed" class="fa-solid fa-circle borrowed" (click)="getAllEquipmentsBorrowed(); getDataStatus($event)"></i>
+                            </div>
+                        </th>
                         <th>Borrower ID</th>
                         <th>Date Borrower</th>
                         <th class="options-box">Options</th>
@@ -25,14 +31,14 @@
                     <tr *ngFor="let equipment of listEquipment, let i = index ">
                         <td>{{equipment.ID}}</td>
                         <td>{{equipment.Name}}</td>
-                        <td class="status"> <span [class]="equipment.Status ? 'borrowed': 'instock'">{{equipment.Status ? 'borrowed': 'instock'}}</span></td>
+                        <td class="status"> <span [class]="equipment.Status ? 'borrowed': 'instock'">{{equipment.Status ? 'Borrowed': 'Instock'}}</span></td>
                         <td>{{equipment.IDEmployee  ? equipment.IDEmployee : 'N/A'}}</td>
                         <td>{{equipment.DateBorrowed ? equipment.DateBorrowed: 'N/A'}}</td>
                         <td class="options-box">
                             <div class="options">
                                 <a routerLink="/manage/equipment/{{equipment.ID}}"><i class="fa-solid fa-circle-info"></i></a>
                                 <i class="fa-solid fa-pen" (click)="openEquipmentUpdatePopup(equipment); getIndex(i)"></i>
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" (click)="togglePopupDelete(); getIndex(i); getID(equipment.ID)"></i>
                             </div>
                         </td>
                     </tr>
@@ -41,5 +47,25 @@
         </div>
     </div>
 </div>
+
+<!-- Popup delete -->
+<div class="overlay-popup-delete" id="popupDelete" (click)="togglePopupDelete()">
+    <div class="popup" (click)="stopPropagation($event)">
+        <div class="close-popup" id="btnClosePopup" (click)="togglePopupDelete()">
+            <i class='bx bx-x'></i>
+        </div>
+        <h4 class="title">Confirm deletion</h4>
+        <p class="message">Are you sure you would like to delete this
+            equipment from the database? This action
+            cannot be undone.
+        </p>
+        <div class="actions">
+            <button class="cancel" (click)="togglePopupDelete()">Cancel</button>
+            <button class="delete" (click)="deleteEquimentByID()">Delete</button>
+        </div>
+
+    </div>
+</div>
+
 <app-equipment-add (equipment)="getEquipmentFormChild($event)"/>
 <app-equipment-update [equipment]="equipment" (newEquipment)="getAndReplaceNewEquipment($event)"/>

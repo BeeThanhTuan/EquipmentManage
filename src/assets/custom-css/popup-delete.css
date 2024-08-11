@@ -1,0 +1,105 @@
+.overlay-popup-delete {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+    display: none;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.overlay-popup-delete.active {
+    display: flex;
+}
+
+.popup {
+    position: relative;
+    margin-top: 50px;
+    width: 410px;
+    padding: 30px;
+    z-index: 100;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    background-color: #fefefe;
+    box-shadow: 0px 0px 5px 1px black;
+    animation: appear 0.3s ease-out forwards;
+}
+
+@keyframes appear {
+    from {
+        opacity: 0.8;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0px);
+    }
+}
+
+.popup .close-popup {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.close-popup i {
+    font-size: 30px;
+    color: rgb(29, 29, 29);
+}
+
+.popup .title {
+    font-size: 27px;
+    color: rgb(29, 29, 29);
+    font-weight: 600;
+}
+
+.popup .message {
+    color: rgb(46, 46, 46);
+}
+
+.popup .actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.actions button {
+    width: 150px;
+    height: 43px;
+    border-radius: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+
+.actions button:active {
+    transform: scale(1.05);
+}
+
+.actions button.cancel {
+    color: #444444;
+    background-color: #eaeaeb;
+}
+.actions button.cancel:hover {
+    background-color: #bebec0;
+}
+
+.actions button.delete {
+    background-color: #e94043;
+    color: #fefefe;
+}
+
+.actions button.delete:hover {
+    background-color: #fc1e22;
+}

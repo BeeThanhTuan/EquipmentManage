@@ -14,9 +14,9 @@ const routes: Routes = [
   {path: 'manage', component: ManageComponent, canActivate:[authGuard], children:[
     {path: '', redirectTo: 'dashboard', pathMatch:'full'},
     {path: 'dashboard', component: DashboardComponent},
-    {path: 'equipment', component: EquipmentComponent},
+    {path: 'equipments', component: EquipmentComponent},
     {path: 'equipment/:id', component: EquipmentDetailComponent},
-    {path: 'employee', component: EmployeeComponent},
+    {path: 'employees', component: EmployeeComponent},
     {path: 'employee/id', component: EmployeeDetailComponent},
     {path: '**', redirectTo: 'dashboard'},
   ]},

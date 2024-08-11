@@ -10,12 +10,12 @@
                 </a>
             </li>
             <li>
-                <a routerLink="equipment" routerLinkActive="active" data-title="Equipment" >
+                <a routerLink="equipments" routerLinkActive="active" data-title="Equipment" >
                   <i class='bx bxs-briefcase-alt-2'></i>
                 </a>
             </li>
             <li>
-                <a routerLink="employee" routerLinkActive="active" data-title="Employee" >
+                <a routerLink="employees" routerLinkActive="active" data-title="Employee" >
                   <i class='bx bxs-user'></i>
                 </a>
             </li>
@@ -29,7 +29,7 @@
               <p>Track and control all your information</p>
             </div>
             <div class="info-user" (click)="openProfilePopup()">
-              <img src="../assets/images/employee.png" >
+              <img src="../assets/images/admin.png" >
               <div class="info">
                 <p class="name">{{name | namePipe}}</p>
                 <p>{{email | emailPipe}}</p>
