@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { numericValidator } from 'src/app/custom-validator/numericValidator';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
@@ -11,6 +11,7 @@ export class UpdateEmployeeComponent {
   employeeUpdateForm: FormGroup;
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
+  @Input() employee!:any;
 
   constructor(private formBuilder: FormBuilder) {
     this.employeeUpdateForm = this.formBuilder.group({
@@ -33,6 +34,25 @@ export class UpdateEmployeeComponent {
       image: [null],
       fullName: [null]
     });
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['employee']) {
+      this.setData();
+    }
+  }
+
+  setData() {
+    this.employeeUpdateForm.get('id')?.setValue(this.employee.ID);
+    const [firstName, middleName, name] = this.employee.Name.split(' ');
+    this.employeeUpdateForm.get('name')?.setValue(name);
+    this.employeeUpdateForm.get('surname')?.setValue(`${firstName} ${middleName}`);
+    this.employeeUpdateForm.get('email')?.setValue(this.employee.Email);
+    this.employeeUpdateForm.get('address')?.setValue(this.employee.Address);
+    this.employeeUpdateForm.get('dateOfBirth')?.setValue(this.employee.DateOfBirth);
+    this.employeeUpdateForm.get('phoneNumber')?.setValue(this.employee.PhoneNumber);
+    this.imageUrl = this.employee.Image ? `http://localhost:3000/resources/employees/${this.employee.Image}` : '';
+
   }
 
 

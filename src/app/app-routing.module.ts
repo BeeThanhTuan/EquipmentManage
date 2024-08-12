@@ -17,7 +17,7 @@ const routes: Routes = [
     {path: 'equipments', component: EquipmentComponent},
     {path: 'equipment/:id', component: EquipmentDetailComponent},
     {path: 'employees', component: EmployeeComponent},
-    {path: 'employee/id', component: EmployeeDetailComponent},
+    {path: 'employee/:id', component: EmployeeDetailComponent},
     {path: '**', redirectTo: 'dashboard'},
   ]},
 

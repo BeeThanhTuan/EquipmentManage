@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { response } from 'express';
 import { EquipmentService } from 'src/app/services/equipment.service';
 
 @Component({
@@ -26,6 +25,7 @@ export class EquipmentDetailComponent {
   getNewData(newEquipment: Object){
     this.equipment= newEquipment;
   }
+
   openEquipmentUpdatePopup() {
     const overlay = document.getElementById('overlayUpdate') as HTMLElement;
     overlay.classList.add('active');

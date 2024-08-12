@@ -15,7 +15,7 @@ export class EquipmentComponent {
   equipment: any;
   index!: number;
   id!: string;
-  searchText = new FormControl();
+  searchKey = new FormControl();
   status: string = '';
 
   constructor(private equipmentService: EquipmentService, private toastService:ToastrService){}
@@ -23,9 +23,7 @@ export class EquipmentComponent {
   ngOnInit(): void {
     this.getAllEquipments();
 
-    this.searchText.valueChanges.pipe(
-      debounceTime(1500) // Thay đổi thời gian debounce ở đây (3000ms = 3s)
-    ).subscribe(value => {
+    this.searchKey.valueChanges.pipe(debounceTime(700)).subscribe(() => {
       this.searchEquipments();
     });
     
@@ -60,7 +58,7 @@ export class EquipmentComponent {
 
   //search equipments 
   searchEquipments(){
-    this.equipmentService.searchEquipments({status: this.status, searchText: this.searchText.value}).subscribe(
+    this.equipmentService.searchEquipments({status: this.status, searchKey: this.searchKey.value}).subscribe(
       (response)=>{
         this.listEquipment = response;
       }
@@ -82,16 +80,17 @@ export class EquipmentComponent {
     const dataStatus = event.target as HTMLElement;
     this.status = dataStatus.getAttribute('data-status')!;
   }
-
+  
+  //add new equipment to list equiments
+  getEquipmentFormChild(equipment: Object){
+    this.listEquipment.unshift(equipment);
+  }
+  
   //update equipment to list equiments
   getAndReplaceNewEquipment(newEquipment: Object){
     this.listEquipment[this.index] = newEquipment;
   }
 
-  //add new equipment to list equiments
-  getEquipmentFormChild(equipment: Object){
-    this.listEquipment.unshift(equipment);
-  }
 
   //delete equipment
   deleteEquimentByID(){

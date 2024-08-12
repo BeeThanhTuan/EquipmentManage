@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { numericValidator } from 'src/app/custom-validator/numericValidator';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
+import { idEmployeeExistsValidator } from 'src/app/custom-validator/idEmployeeValidator';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { showToastSuccess } from 'src/app/toast-message/toastr';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-employee-add',
@@ -12,13 +16,14 @@ export class EmployeeAddComponent {
   employeeAddForm: FormGroup;
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
+  @Output() employee : EventEmitter<Object> = new EventEmitter<Object>
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private employeeService: EmployeeService, private toastrService: ToastrService) {
     this.employeeAddForm = this.formBuilder.group({
-      id: ['', Validators.required],
+      id: ['', [Validators.required, Validators.minLength(6)], idEmployeeExistsValidator(employeeService)],
       name: ['', Validators.required],
       surname: ['', Validators.required],
-      gender: ['0'],
+      gender: ['true'],
       phoneNumber: [
         '',
         [
@@ -35,6 +40,8 @@ export class EmployeeAddComponent {
       fullName: [null]
     });
   }
+
+
   get idControl() {
     return this.employeeAddForm.get('id');
   }
@@ -66,6 +73,11 @@ export class EmployeeAddComponent {
     this.employeeAddForm.get('fullName')?.setValue(fullname, { emitEvent: false });
   }
 
+  removeImage(){
+    this.imageUrl = '';
+    this.employeeAddForm.get('image')?.setValue(null);
+  }
+
   formatPhoneNumber(event: any) {
     let input = event.target.value.replace(/\s+/g, ''); // remove all space
     if (input.length > 10) {
@@ -73,6 +85,14 @@ export class EmployeeAddComponent {
     }
     this.employeeAddForm.get('phoneNumber')?.setValue(input, { emitEvent: false });
     event.target.value = this.phoneNumberPipe.transform(input);
+  }
+
+  formatID(event: any) {
+    let input = event.target.value.replace(/\s+/g, '').toUpperCase(); 
+    if (input.length > 6) {
+      input = input.substring(0, 6); // maxlenght 10
+    }
+    this.employeeAddForm.get('id')?.setValue(input, { emitEvent: false });
   }
 
   onImageChange(event: Event) {
@@ -99,8 +119,28 @@ export class EmployeeAddComponent {
     return null;
   }
 
-  updateEmployee() {
-    console.table(this.employeeAddForm.value);
+  addNewEmployee() {
+    const newEmployee = new FormData();
+    newEmployee.append('id', this.employeeAddForm.get('id')?.value);
+    newEmployee.append('fullName', this.employeeAddForm.get('fullName')?.value);
+    newEmployee.append('gender', this.employeeAddForm.get('gender')?.value);
+    newEmployee.append('email', this.employeeAddForm.get('email')?.value);
+    newEmployee.append('phoneNumber', this.employeeAddForm.get('phoneNumber')?.value);
+    newEmployee.append('address', this.employeeAddForm.get('address')?.value);
+    newEmployee.append('image', this.employeeAddForm.get('image')?.value);
+    const dateOfBirth = this.employeeAddForm.get('dateOfBirth')?.value;
+    if (dateOfBirth) {
+      const [year, month, day] = dateOfBirth.split('-');
+      const formattedDate = `${day}/${month}/${year}`;
+      newEmployee.append('dateOfBirth', formattedDate);
+    }
+    this.employeeService.createNewEmployee(newEmployee).subscribe(
+      (respone) =>{
+        this.employee.emit(respone.data);
+        this.removeEmployeeAddPopup();
+        showToastSuccess(this.toastrService, 'Add new employee success!');  
+      }
+    )
   }
 
   removeEmployeeAddPopup() {

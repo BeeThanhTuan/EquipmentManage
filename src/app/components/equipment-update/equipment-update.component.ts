@@ -43,7 +43,7 @@ export class EquipmentUpdateComponent {
     this.equimentUpdateForm.get('id')?.setValue(this.equipment.ID);
     this.equimentUpdateForm.get('name')?.setValue(this.equipment.Name);
     this.equimentUpdateForm.get('description')?.setValue(this.equipment.Description);
-    this.imageUrl = this.equipment.Image ? `http://localhost:3000/resources/${this.equipment.Image}` : '';
+    this.imageUrl = this.equipment.Image ? `http://localhost:3000/resources/equipments/${this.equipment.Image}` : '';
     const idEquipment = this.equipment.IDEmployee? this.equipment.IDEmployee: '-None-';
     this.equimentUpdateForm.get('idEmployee')?.setValue(idEquipment);
   }

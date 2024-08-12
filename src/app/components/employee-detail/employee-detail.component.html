@@ -3,37 +3,37 @@
         <div class="infor-detail">
             <div class="main-infor">
                 <div class="img-area">
-                    <img src="../assets/images/employee.png" alt="">
+                    <img src="http://localhost:3000/resources/employees/{{employee.Image}}" alt="">
                 </div>
                 <div class="infor-main">
-                    <p class="name">Antoni</p>
-                    <p class="id">ID: E1233</p>
+                    <p class="name">{{employee.Name}}</p>
+                    <p class="id">ID: {{employee.ID}}</p>
                 </div>
             </div>
             <div class="information">
                 <span>Information</span>
                 <div class="gender infor">
                     <label for="">Gender:</label>
-                    <p>Male</p>
+                    <p>{{employee.Gender ? 'Male' : 'Female'}}</p>
                 </div>
                 <div class="date-of-birth infor">
                     <label for="">Date of Birth:</label>
-                    <p>12/12/2002</p>
+                    <p>{{employee.DateOfBirth}}</p>
                 </div>
             </div>
             <div class="contact">
                 <span>Contact</span>
                 <div class="email infor">
                     <label for="">Email Address:</label>
-                    <p>tuann@mail.com</p>
+                    <p>{{employee.Email}}</p>
                 </div>
                 <div class="phone infor">
                     <label for="">Phone Number:</label>
-                    <p>0231 232 232</p>
+                    <p>{{employee.PhoneNumber | phoneNumberPipe}}</p>
                 </div>
                 <div class="address infor">
                     <label for="">Address:</label>
-                    <p>Hoai Thanh - Hoai Nhon - Binh Binh  </p>
+                    <p>{{employee.Address}}</p>
                     
                 </div>
             </div>
@@ -45,13 +45,13 @@
             <div class="title">
                 <span>List of borrowed equipment</span>
                 <div class="vertical-scroll">
-                    <div class="unborrowed" *ngIf="false">
+                    <div class="unborrowed" *ngIf="listEquipmentBorrowed.length === 0">
                         <div>
                             <i class="fa-brands fa-dropbox"></i>
                             <p>Unborrowed</p>
                         </div>
                     </div>
-                    <table *ngIf="true">
+                    <table *ngIf="listEquipmentBorrowed.length !== 0">
                         <thead>
                             <tr>
                                 <th>Image</th>
@@ -62,31 +62,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="image"><img src="../assets/images/screen.png" alt=""></td>
-                                <td>MT0123</td>
-                                <td>Màn hình Hp</td>
-                                <td>12/23/2024</td>
+                            <tr *ngFor="let equipment of listEquipmentBorrowed">
+                                <td class="image"><img src="http://localhost:3000/resources/equipments/{{equipment.Image}}" alt=""></td>
+                                <td>{{equipment.ID}}</td>
+                                <td>{{equipment.Name}}</td>
+                                <td>{{equipment.DateBorrowed}}</td>
                                 <td class="option">
-                                    <a routerLink="/manage/equipment/id">Detail</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="image"><img src="../assets/images/screen2.png" alt=""></td>
-                                <td>MT0123</td>
-                                <td>Màn hình Hp</td>
-                                <td>12/23/2024</td>
-                                <td class="option">
-                                    <a routerLink="/employee/id">Detail</a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="image"><img src="../assets/images/screen2.png" alt=""></td>
-                                <td>MT0123</td>
-                                <td>Màn hình Hp</td>
-                                <td>12/23/2024</td>
-                                <td class="option">
-                                    <a routerLink="/employee/id">Detail</a>
+                                    <a routerLink="/manage/equipment/{{equipment.ID}}">Detail</a>
                                 </td>
                             </tr>
                         </tbody>

@@ -3,7 +3,7 @@
         <div class="remove" (click)="removeEmployeeAddPopup()">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <form [formGroup]="employeeAddForm" (ngSubmit)="updateEmployee()">
+        <form [formGroup]="employeeAddForm" (ngSubmit)="addNewEmployee()" spellcheck="false">
             <p class="title">Add New Employee</p>
             <div class="img-area">
                 <img [src]="imageUrl || '../assets/images/avt-anonymous.png'" alt="">
@@ -11,13 +11,16 @@
                     <input type="file" (change)="onImageChange($event)">
                     <i class="fa-solid fa-camera"></i>
                 </div>
+                <div class="btn-cancel-choose-img" *ngIf="imageUrl">
+                    <button (click)="removeImage()">Cancel</button>
+                </div>
             </div>
             <div class="vertical-scroll">
                 <div class="info-employee">
                     <div class="info">
                         <label>ID</label>
                         <div>
-                            <input type="text" formControlName="id">
+                            <input type="text" formControlName="id" (input)="formatID($event)">
                             <span [ngClass]="{
                                 'validating':idControl?.valid && (idControl?.dirty || idControl?.touched),
                                 'invalidating': idControl?.invalid && (idControl?.dirty || idControl?.touched)
@@ -25,13 +28,15 @@
                         </div>
                         <div *ngIf="idControl?.invalid && (idControl?.dirty || idControl?.touched)">
                             <div class="invalid" *ngIf="idControl?.hasError('required')">Id is required.</div>
+                            <div class="invalid" *ngIf="idControl?.hasError('minlength')">ID must be at least 6 characters long.</div>
+                            <div class="invalid" *ngIf="idControl?.hasError('idExists')">Exists id.</div>
                         </div>
                     </div>
                     <div class="info">
                         <label>Gender</label>
                         <select formControlName="gender">
-                            <option value="0">Male</option>
-                            <option value="1">Female</option>
+                            <option value="true">Male</option>
+                            <option value="false">Female</option>
                         </select>
                     </div>
                     <div class="info">

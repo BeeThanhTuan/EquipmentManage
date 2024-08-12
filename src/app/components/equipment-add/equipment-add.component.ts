@@ -4,8 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { showToastSuccess } from 'src/app/toast-message/toastr';
-import { Location } from '@angular/common';
-import { idExistsValidator } from 'src/app/custom-validator/idEquipmentValidator';
+import { idEquipmentExistsValidator } from 'src/app/custom-validator/idEquipmentValidator';
 @Component({
   selector: 'app-equipment-add',
   templateUrl: './equipment-add.component.html',
@@ -17,9 +16,9 @@ export class EquipmentAddComponent {
   imageUrl: string | ArrayBuffer | null = '';
   @Output() equipment: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private location: Location, private toastService: ToastrService) {
+  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService,  private toastService: ToastrService) {
     this.equipmentAddForm = this.formBuilder.group({
-      id: ['', [Validators.required, Validators.minLength(6)], idExistsValidator(equipmentService)],
+      id: ['', [Validators.required, Validators.minLength(6)], idEquipmentExistsValidator(equipmentService)],
       name: ['', Validators.required],
       description: ['', Validators.required],
       image: [''],

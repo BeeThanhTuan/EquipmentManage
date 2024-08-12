@@ -39,7 +39,7 @@ export class EquipmentService {
   }
 
   //search equuipments by search text
-  searchEquipments(data: {status: string; searchText: string }):Observable<any>{
+  searchEquipments(data: {status: string; searchKey: string }):Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipments/search`;
     return this.httpClient.post<any>(url, data, this.httpOptions).pipe(
       map((response:any) => response.reverse()) 
@@ -58,19 +58,19 @@ export class EquipmentService {
     return this.httpClient.get<boolean>(url);
   }
   
-   //create new equipment
+  //create new equipment
   createNewEquipment(data: FormData): Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipment`;
     return this.httpClient.post<any>(url, data);
   }
 
- //update equipment by id
+  //update equipment by id
   updateEquipmentByID(id:string, data: FormData): Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipment/${id}`;
     return this.httpClient.put<any>(url, data);
   }
 
- //delete equipment by id
+  //delete equipment by id
   deleteEquipmentByID(id:string): Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipment/${id}`;
     return this.httpClient.delete<any>(url);
