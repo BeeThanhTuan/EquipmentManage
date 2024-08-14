@@ -26,6 +26,11 @@
     position: relative;
 }
 
+:host-context(.light-mode) .search-box input {
+    background-color: rgba(253, 253, 253, 0.848);
+    color: var(--light-color-undertone);
+}
+
 .search-box input {
     position: absolute;
     width: 100%;
@@ -60,7 +65,6 @@
     font-weight: 500;
     color: var(--dark-color-undertone);
     cursor: pointer;
-
 }
 
 .btn-add button:hover {
@@ -74,6 +78,10 @@
 .btn-add button i {
     font-size: 17px;
     margin-right: 5px;
+}
+
+:host-context(.light-mode) .vertical-scroll {
+    background-color: var(--light-bg-color-undertone);
 }
 
 .vertical-scroll {
@@ -98,9 +106,12 @@ table {
     position: relative;
     width: 100%;
     border-collapse: collapse;
-    color: var(--dark-color-undertone);
     table-layout: fixed;
     scroll-behavior: smooth;
+}
+
+:host-context(.light-mode) thead {
+    background-color: var(--light-bg-color-undertone);
 }
 
 thead {
@@ -114,6 +125,10 @@ thead {
     background-color: var(--dark-bg-color-undertone);
 }
 
+:host-context(.light-mode) th{
+    font-weight: 400;
+}
+
 th,
 td {
     padding: 8px;
@@ -121,6 +136,11 @@ td {
     font-weight: 300;
 }
 
+:host-context(.light-mode) td{
+    border-top: 1px solid var(--light-color-undertone);
+    color: var(--light-color-undertone);
+    font-weight: 400;
+}
 td {
     height: 44px;
     color: var(--dark-color);
@@ -147,6 +167,10 @@ td.options-box .options {
     font-size: 18px;
 }
 
+:host-context(.light-mode) .options i{
+    color: var(--light-color-undertone);
+}
+
 .options i {
     font-size: 15px;
     width: 23px;
@@ -159,14 +183,16 @@ td.options-box .options {
     justify-content: center;
     transition: 0.1s;
 }
-.options i:hover{
+:host-context(.light-mode) .options i:hover,
+.options i:hover {
     color: transparent;
     background-image: var(--bg-raial-gradient-undertone);
     background-clip: text;
     -webkit-background-clip: text;
     transform: scale(1.5);
 }
-.options i:active{
+
+.options i:active {
     transform: scale(1.1);
 }
 
@@ -174,8 +200,17 @@ tbody tr {
     transition: 0.3s;
 }
 
+:host-context(.light-mode) tbody tr:hover{
+    background-image: linear-gradient(125deg, transparent, rgba(24, 24, 24, 0.2) 10%,rgba(24, 24, 24, 0.2) calc(100% - 135px), transparent 135px);
+}
+
 tbody tr:hover {
-    background-image: linear-gradient(125deg, transparent, rgba(255, 255, 255, 0.149) 10%, rgba(255, 255, 255, 0.149) calc(100% - 135px), transparent 135px); 
+    background-image: linear-gradient(125deg, transparent, rgba(255, 255, 255, 0.149) 10%, rgba(255, 255, 255, 0.149) calc(100% - 135px), transparent 135px);
+}
+:host-context(.light-mode) tbody tr:hover td {
+    color: var(--light-color-undertone);
+    border-top: 1px solid var(--light-color-undertone);
+    border-bottom: 1px solid var(--light-color-undertone);
 }
 
 tbody tr:hover td {
@@ -189,8 +224,12 @@ tbody tr:hover td {
     margin-left: 20px;
 }
 
+
+/* css popup delete */
+
+@import '/src/assets/custom-css/popup-confirm.css';
 @media (max-width: 1000px) {
     tbody tr:hover {
-        background-image: linear-gradient(125deg, transparent, rgba(255, 255, 255, 0.149)10%, rgba(255, 255, 255, 0.149)  calc(100% - 120px), transparent 120px);
+        background-image: linear-gradient(125deg, transparent, rgba(255, 255, 255, 0.149)10%, rgba(255, 255, 255, 0.149) calc(100% - 120px), transparent 120px);
     }
 }

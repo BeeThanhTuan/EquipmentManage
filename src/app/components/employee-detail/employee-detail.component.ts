@@ -23,6 +23,10 @@ export class EmployeeDetailComponent {
       this.listEquipmentBorrowed = response.data.BorrowedEquipmentList;
     });
   }
+
+  getDataFormChild(employee: Object){
+    this.employee = employee;
+  }
   
   openEmployeePopup(){
     const overlay = document.getElementById('overlayUpdate') as HTMLElement;

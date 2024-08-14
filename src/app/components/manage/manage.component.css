@@ -12,7 +12,13 @@
     background-color: var(--dark-bg-color);
     overflow: hidden;
     display: flex;
+    border-radius: 5px;
 }
+
+:host-context(.light-mode) .container{
+    background-color: var(--light-bg-color);
+}
+
 nav{
     width: 120px;
     height: 100vh;
@@ -30,6 +36,11 @@ nav .logo{
     justify-content: center;
     align-items: center;
 }
+
+:host-context(.light-mode) .logo div{
+    background-color: var(--light-bg-color-undertone);
+}
+
 .logo div{
     width: 71px;
     height: 71px;
@@ -41,6 +52,7 @@ nav .logo{
     background-color: var(--dark-bg-color-undertone);
     border-radius: 50%;
 }
+
 nav .logo p{
     font-family: "Gochi Hand", cursive;
     font-size: 30px;
@@ -52,6 +64,11 @@ nav .logo p{
     -webkit-background-clip: text;
 
 }
+
+:host-context(.light-mode) nav ul{
+    background-color: var(--light-bg-color-undertone);
+}
+
 nav ul {
     background-color: var(--dark-bg-color-undertone);
     padding:20px 15px;
@@ -72,11 +89,16 @@ ul li a{
     border-radius: 50%;
     text-decoration: none;
 }
-ul li a[class="active"]{
+ul li a.active{
     background-image: var(--bg-raial-gradient-undertone);
     box-shadow: 0px 0px 3px 3px #5771bf;
     border: 1px solid #fff;
 }
+
+:host :host-context(.light-mode) li a i{
+    color: rgb(48, 48, 48);
+}
+
 li a i{
     font-size: 20px;
     color: var(--dark-color-undertone);
@@ -93,6 +115,10 @@ li a:not(.active):hover i{
     align-items: center;
     cursor: pointer;
     margin-bottom: 20px;
+}
+
+:host-context(.light-mode) .main{
+    color: var(--light-color);
 }
 
 .main{
@@ -116,8 +142,13 @@ li a:not(.active):hover i{
     font-size: 30px;
     font-weight: 700;
     letter-spacing: 1px;
-    color: var(--dark-color-undertone);
 }
+
+:host-context(.light-mode) .title p{
+    color: var(--light-color-undertone);
+    font-weight: 400;
+}
+
 .title p{
     font-size: 13px;
     color: var(--dark-color);
@@ -125,7 +156,15 @@ li a:not(.active):hover i{
     letter-spacing: 0.7px;
 }
 
-.header .info-user{
+.header .handle{
+    position: relative;
+}
+
+:host-context(.light-mode) .handle .info-user{
+    background-color: var(--light-bg-color-undertone);
+}
+
+.handle .info-user{
     width: fit-content;
     padding: 5px 15px;
     background-color: var(--dark-bg-color-undertone);
@@ -138,10 +177,13 @@ li a:not(.active):hover i{
     margin: 20px 20px;
     margin-right: 25px;
 }
-.header .info-user:hover{
-    background-color: #3e3949;
+:host-context(.light-mode) .handle .info-user:hover{
+    background-color: #e4e4e4;
 }
-.header .info-user:active{
+.handle .info-user:hover{
+    background-color: #46434e;
+}
+.handle .info-user:active{
     transform: scale(1.02);
 }
 .info-user img{
@@ -151,12 +193,21 @@ li a:not(.active):hover i{
     object-fit: contain;
 }
 
+:host-context(.light-mode) .info-user .info p{
+    color: var(--light-color-undertone);
+}
+
 .info-user .info p{
     font-size: 14px;
     color: var(--dark-color);
     height: 24px;
 }
-.info-user .info p[class="name"]{
+
+:host-context(.light-mode) .info-user .info p.name{
+    color: var(--light-color);
+}
+
+.info-user .info p.name{
     font-size: 18px;
     letter-spacing: 0.3px;
     color: var(--dark-color-undertone)
@@ -164,5 +215,31 @@ li a:not(.active):hover i{
 .info-user i{
     font-size: 25px;
 }
+
+.theme-mode{
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: -50px;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.theme-mode i{
+    cursor: pointer;
+    font-size: 30px;
+}
+.theme-mode i.bxs-sun{
+    color: rgb(215, 202, 59);
+}
+
+.theme-mode i.bxs-moon{
+    color: rgb(31, 78, 207);
+}
+
+
+
 
 

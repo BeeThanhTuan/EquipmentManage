@@ -4,6 +4,10 @@
     height: calc(100vh - 120px);
     padding-right: 25px;
 }
+
+:host-context(.light-mode) .content{
+    background-color: var(--light-bg-color-undertone);
+}
 .content{
     width: 100%;
     min-width: 580px;
@@ -62,6 +66,7 @@
         rgb(221, 221, 221) -82% -82%, #970101 100%
     );
 }
+
 .infor .options{
     position: absolute;
     left: 0;
@@ -125,6 +130,111 @@
     background-clip: text;
     -webkit-background-clip: text;
 }
+
+
+.instock .select-box{
+    position: absolute;
+    top:-240px;
+    left: 0;
+    min-width: 302.5px;
+    height: 230px;
+    background-color: var(--dark-bg-color-undertone);
+    border-radius: 3px;
+    box-shadow: 0px 0px 4px 1px black;
+    z-index: 10;
+    display: none;
+    animation:appear 0.2s ease-out forwards;
+}
+
+@keyframes appear {
+    from{
+        transform: translateY(40px);
+    }
+    to{
+        transform: translateY(0px);
+    }
+}
+
+.instock .select-box.active{
+    display: block;
+}
+
+.instock .select-box .search{
+    position: relative;
+    width: 100%;
+    height: 40px;
+    display: flex;
+}
+.instock .search input{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 15px;
+    border: 1px solid var(--dark-color-undertone);
+    padding: 0px 10px;
+    border: 3px;
+}
+
+.instock .search i{
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    font-size: 20px;
+    color: black;
+}
+
+.instock .list-option{
+    width: 100%;
+    margin: 2px 0px;
+    height: calc(100% - 44px);
+    overflow-y: scroll;
+    scroll-behavior: smooth;
+}
+.instock .list-option::-webkit-scrollbar{
+    width: 15px;
+    height: 5px;
+} 
+.instock .list-option::-webkit-scrollbar-thumb,
+.instock.list-option::-webkit-scrollbar-track{
+    background-color:var(--dark-color);
+}
+.instock .list-option::-webkit-scrollbar-track-piece{
+    background-color: var(--dark-bg-color);
+}
+.instock .list-option ul{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.instock .list-option ul li{
+    display: flex;
+    padding: 7px 15px;
+    gap: 10px;
+    width: 100%;
+    list-style: none;
+    cursor: pointer;
+}
+
+.instock .list-option ul li:hover{
+    background-color: rgba(255, 255, 255, 0.149) ;
+}
+
+.instock .list-option ul li p{
+    font-size: 16px;
+    pointer-events: none;
+    display: inline;
+    white-space: nowrap;
+}
+.list-option ul li p.id-employee{
+    width: 70px;
+}
+
+@import '/src/assets/custom-css/popup-confirm.css';
+
 @media (max-width: 1100px) {
     .infor-detail{
         min-width: 500px;

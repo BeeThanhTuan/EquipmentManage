@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" (click)="removeSearchIDEmployeeOverLay($event)">
     <div class="content">
         <div class="infor-detail">
             <div class="infor-area">
@@ -15,11 +15,26 @@
                     </div>
                     <div class="options">
                         <div class="instock" *ngIf="equipment.Status === false">
-                            <button ><i class="fa-solid fa-user-plus"></i></button>
+                            <button (click)="openSearchIDEmployee(); stopPropagation($event)"><i class="fa-solid fa-user-plus"></i></button>
+                            <!-- popup search id -->
+                            <div class="select-box" id="searchBoxEmployee">
+                                <div class="search">
+                                    <input type="text" placeholder="Search..." id="inputSearchIDEmployee" [formControl]="query" autocomplete="off">
+                                    <i class='bx bx-search'></i>
+                                </div>
+                                <div class="list-option">
+                                    <ul class="list-employee">
+                                        <li *ngFor="let employee of listEmployee" (click)="getIDEmployee($event)">
+                                            <p class="id-employee" data-id="{{employee.ID}}">{{employee.ID}}</p>
+                                            <p>{{employee.Name}}</p>
+                                        </li>  
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="borrowed" *ngIf="equipment.Status === true">
-                            <button ><i class="fa-solid fa-user-minus"></i></button>
-                            <a routerLink="/manage/employee/id" *ngIf="equipment.Status"><i class="fa-solid fa-user-tag" ></i></a>
+                            <button (click)="togglePopupConfirm()"><i class="fa-solid fa-user-minus"></i></button>
+                            <a routerLink="/manage/employee/{{equipment.IDEmployee}}" *ngIf="equipment.Status"><i class="fa-solid fa-user-tag" ></i></a>
                         </div>
                         <div class="btn-update">
                             <button (click)="openEquipmentUpdatePopup()">Edit</button>
@@ -30,5 +45,41 @@
         </div>
     </div>
 </div>
+
+<!-- Popup confirm borrow-->
+<div class="overlay-popup-confirm" id="popupConfirm" (click)="togglePopupConfirm()" *ngIf="equipment.Status === false">
+    <div class="popup" (click)="stopPropagation($event)">
+        <div class="close-popup" id="btnClosePopup" (click)="togglePopupConfirm()">
+            <i class='bx bx-x'></i>
+        </div>
+        <h4 class="title">Confirm borrowing</h4>
+        <p class="message">Are you sure you want to borrow the equipment to employee with ID {{idEmployee}}?
+            This action cannot be undone.
+       </p>
+        <div class="actions">
+            <button class="cancel" (click)="togglePopupConfirm()">Cancel</button>
+            <button class="borrow" (click)="hanldBorrowedEquipment()">Borrow</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- Popup confirm return-->
+<div class="overlay-popup-confirm" id="popupConfirm" (click)="togglePopupConfirm()" *ngIf="equipment.Status === true">
+    <div class="popup" (click)="stopPropagation($event)">
+        <div class="close-popup" id="btnClosePopup" (click)="togglePopupConfirm()">
+            <i class='bx bx-x'></i>
+        </div>
+        <h4 class="title">Confirm return</h4>
+        <p class="message">Are you sure you want to return this equipment? This action cannot be undone.
+        </p>
+        <div class="actions">
+            <button class="cancel" (click)="togglePopupConfirm()">Cancel</button>
+            <button class="delete" (click)="hanldReturnEquipment()">Return</button>
+        </div>
+
+    </div>
+</div>
+
 <app-equipment-update [equipment]="equipment" (newEquipment)="getNewData($event)"/>
 

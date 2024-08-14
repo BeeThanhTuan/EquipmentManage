@@ -3,7 +3,7 @@
         <div class="remove" (click)="removeEquipmentAddPopup()">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <form [formGroup]="equipmentAddForm" (ngSubmit)="addNewEquipment()">
+        <form [formGroup]="equipmentAddForm" (ngSubmit)="addNewEquipment()" spellcheck="false">
             <p class="title">Add New Equipment</p>
             <div class="vertical-scroll">
                 <div class="upload-area">

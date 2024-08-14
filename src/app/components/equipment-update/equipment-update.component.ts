@@ -1,7 +1,9 @@
 import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { response } from 'express';
 import { ToastrService } from 'ngx-toastr';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
 import { showToastSuccess } from 'src/app/toast-message/toastr';
 
@@ -14,9 +16,14 @@ export class EquipmentUpdateComponent {
   equimentUpdateForm: FormGroup;
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
+  listEmployee :any[] = [];
   @Input() equipment!: any;
   @Output() newEquipment: EventEmitter<Object> = new EventEmitter<Object>();
-  constructor(private formBuilder: FormBuilder, private equipmentService: EquipmentService, private toastService: ToastrService) {
+
+  constructor(private formBuilder: FormBuilder,
+     private equipmentService: EquipmentService,
+     private employeetService: EmployeeService,
+      private toastService: ToastrService) {
     this.equimentUpdateForm = this.formBuilder.group({
       id: [{ value: '', disabled: true }],
       name: ['', Validators.required],
@@ -37,6 +44,11 @@ export class EquipmentUpdateComponent {
     this.equimentUpdateForm.get('query')?.valueChanges.subscribe(() => {
       this.searchIDEmployee();
     });
+    this.employeetService.getAllEmployees().subscribe(
+      (response)=>{
+        this.listEmployee = response;     
+      }
+    )
   }
 
   setData() {
@@ -94,9 +106,12 @@ export class EquipmentUpdateComponent {
   updateEquipment() {
     const newEquipment = new FormData();
     const id = this.equimentUpdateForm.get('id')?.value
-    newEquipment.append('name', this.equimentUpdateForm.get('name')?.value);
-    newEquipment.append('description', this.equimentUpdateForm.get('description')?.value);
-    newEquipment.append('image', this.equimentUpdateForm.get('image')?.value);
+    const excludedFields = ['id', 'idEmployee'];
+    Object.keys(this.equimentUpdateForm.value).forEach(key => {
+      if (!excludedFields.includes(key) ) {
+        newEquipment.append(key, this.equimentUpdateForm.value[key]);
+      }
+    });
     const idEmployee = this.equimentUpdateForm.get('idEmployee')?.value !== '-None-' ? this.equimentUpdateForm.get('idEmployee')?.value : '';
     newEquipment.append('idEmployee', idEmployee);
     this.equipmentService.updateEquipmentByID(id, newEquipment).subscribe(
@@ -150,10 +165,7 @@ export class EquipmentUpdateComponent {
     const query = this.equimentUpdateForm.get('query')?.value.normalize('NFD').replace(/[\u0300-\u036f]/g, '');
     const items: NodeListOf<HTMLLIElement> = document.querySelectorAll('ul.list-employee li');
     items.forEach((item) => {
-      const text = item
-        .textContent!.toLowerCase()
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '');
+      const text = item.textContent!.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
       if (text.includes(query)) {
         item.style.display = 'flex';
       } else {

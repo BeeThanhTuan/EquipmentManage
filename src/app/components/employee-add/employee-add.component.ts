@@ -121,19 +121,21 @@ export class EmployeeAddComponent {
 
   addNewEmployee() {
     const newEmployee = new FormData();
-    newEmployee.append('id', this.employeeAddForm.get('id')?.value);
-    newEmployee.append('fullName', this.employeeAddForm.get('fullName')?.value);
-    newEmployee.append('gender', this.employeeAddForm.get('gender')?.value);
-    newEmployee.append('email', this.employeeAddForm.get('email')?.value);
-    newEmployee.append('phoneNumber', this.employeeAddForm.get('phoneNumber')?.value);
-    newEmployee.append('address', this.employeeAddForm.get('address')?.value);
-    newEmployee.append('image', this.employeeAddForm.get('image')?.value);
+    const excludedFields = ['dateOfBirth', 'name', 'surname'];
+
+    Object.keys(this.employeeAddForm.value).forEach(key => {
+      if (!excludedFields.includes(key) ) {
+        newEmployee.append(key, this.employeeAddForm.value[key]);
+      }
+    });
+
     const dateOfBirth = this.employeeAddForm.get('dateOfBirth')?.value;
     if (dateOfBirth) {
       const [year, month, day] = dateOfBirth.split('-');
       const formattedDate = `${day}/${month}/${year}`;
       newEmployee.append('dateOfBirth', formattedDate);
     }
+
     this.employeeService.createNewEmployee(newEmployee).subscribe(
       (respone) =>{
         this.employee.emit(respone.data);

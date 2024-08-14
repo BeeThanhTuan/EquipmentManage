@@ -248,10 +248,11 @@ tbody tr:hover td {
 .container .secondary-content {
     min-width: 360px;
     margin-left: 20px;
+    
 }
 
 /* css popup delete */
-@import '/src/assets/custom-css/popup-delete.css';
+@import '/src/assets/custom-css/popup-confirm.css';
 
 
 

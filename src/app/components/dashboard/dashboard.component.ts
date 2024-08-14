@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { response } from 'express';
 import { AuthService } from 'src/app/services/auth.service';
+import { EmployeeService } from 'src/app/services/employee.service';
 import { EquipmentService } from 'src/app/services/equipment.service';
 
 @Component({
@@ -14,11 +15,14 @@ export class DashboardComponent {
   displayedRatio!: number;
   totalEquipment!: number;
   totalEquipmentActive!: number;
-  listEquipmentActive: any;
+  listEquipmentActive: any[]= [];
+  listEmployeeBorrowed: any[]= [];
 
   constructor(
     private authService: AuthService,
-    private equipmentService: EquipmentService
+    private equipmentService: EquipmentService,
+    private employeeService: EmployeeService
+
   ) {}
 
   ngOnInit(): void {
@@ -31,6 +35,10 @@ export class DashboardComponent {
       this.totalEquipmentActive = response.length;
       this.listEquipmentActive = response;
       this.updateRatioAndDisplay();
+    });
+
+    this.employeeService.getAllEmployeesBorrowesEquipment().subscribe((response) => {
+      this.listEmployeeBorrowed = response;
     });
   }
 

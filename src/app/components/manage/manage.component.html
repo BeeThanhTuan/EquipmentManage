@@ -28,13 +28,20 @@
               <h2>{{title}}</h2>
               <p>Track and control all your information</p>
             </div>
-            <div class="info-user" (click)="openProfilePopup()">
-              <img src="../assets/images/admin.png" >
-              <div class="info">
-                <p class="name">{{name | namePipe}}</p>
-                <p>{{email | emailPipe}}</p>
+            <div class="handle">
+              <div class="theme-mode">
+                <i class='bx bxs-sun' *ngIf="darkmode" (click)="changeThemeMode()"></i>
+                <i class='bx bxs-moon' *ngIf="darkmode === false" (click)="changeThemeMode()"></i>
               </div>
-              <i class='bx bx-chevron-down'></i>
+              <div class="info-user" (click)="openProfilePopup()">
+                <img src="../assets/images/admin.png" >
+                <div class="info">
+                  <p class="name">{{name | namePipe}}</p>
+                  <p>{{email | emailPipe}}</p>
+                </div>
+                <i class='bx bx-chevron-down'></i>
+                
+              </div>
             </div>
         </div>
         <router-outlet></router-outlet>

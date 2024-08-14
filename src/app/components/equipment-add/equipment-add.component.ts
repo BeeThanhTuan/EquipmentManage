@@ -76,10 +76,11 @@ export class EquipmentAddComponent {
 
   addNewEquipment() {
     const newEquipment = new FormData();
-    newEquipment.append('id', this.equipmentAddForm.get('id')?.value);
-    newEquipment.append('name', this.equipmentAddForm.get('name')?.value);
-    newEquipment.append('description', this.equipmentAddForm.get('description')?.value);
-    newEquipment.append('image', this.equipmentAddForm.get('image')?.value);
+
+    Object.keys(this.equipmentAddForm.value).forEach(key => {
+      newEquipment.append(key, this.equipmentAddForm.value[key]);
+    });
+    
     this.equipmentService.createNewEquipment(newEquipment).subscribe(
       (respone) =>{
         this.equipment.emit(respone.data);

@@ -1,7 +1,10 @@
 import { Component } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { response } from 'express';
 import { ToastrService } from 'ngx-toastr';
+import { debounceTime } from 'rxjs';
 import { EmployeeService } from 'src/app/services/employee.service';
+import { showToastSuccess } from 'src/app/toast-message/toastr';
 
 @Component({
   selector: 'app-employee',
@@ -13,11 +16,15 @@ export class EmployeeComponent {
   employee!: object;
   index!: number;
   id!: string;
-
+  searchKey = new FormControl
   constructor(private employeeService: EmployeeService, private toastService:ToastrService){}
 
   ngOnInit(): void {
     this.getAllEmployees();
+
+    this.searchKey.valueChanges.pipe(debounceTime(700)).subscribe(() => {
+      this.searchEmployees();
+    });
   }
 
   //get all employee from database
@@ -43,6 +50,32 @@ export class EmployeeComponent {
     this.listEmployee.unshift(employee);
   }
 
+  //update employee to list employees
+  getAndReplaceNewEmployee(newEmployee: Object){
+    console.log(newEmployee);
+    this.listEmployee[this.index] = newEmployee;
+  }
+
+  //delete employee
+  deleteEmployeeByID(){
+    this.employeeService.deleteEmployeeByID(this.id).subscribe(
+      ()=>{
+        this.togglePopupConfirm();
+        this.listEmployee.splice(this.index, 1);
+        showToastSuccess(this.toastService, 'Deleted employee success!');
+      }
+    )
+  }
+
+  //search equipments 
+  searchEmployees(){
+    this.employeeService.searchEmployees({searchKey: this.searchKey.value}).subscribe(
+      (response)=>{
+        this.listEmployee = response;
+      }
+    )
+  }
+
   //open popup add new employee
   openEmployeeAddPopup(){
     const overlay = document.getElementById('overlayAdd') as HTMLElement;
@@ -54,5 +87,15 @@ export class EmployeeComponent {
     this.employee = employee;
     const overlay = document.getElementById('overlayUpdate') as HTMLElement;
     overlay.classList.add('active');
+  }
+
+  //popup delete
+  togglePopupConfirm(){
+    const overlay = document.getElementById('popupConfirm') as HTMLElement;
+    overlay.classList.toggle('active');
+  }
+
+  stopPropagation(event: Event) {
+    event.stopPropagation();
   }
 }

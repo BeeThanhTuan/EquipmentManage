@@ -33,17 +33,7 @@ export class EquipmentService {
   //get all equuipments borrowed (status = true)
   getAllEquipmentBorrowed():Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipments/borrowed`;
-    return this.httpClient.get<any>(url).pipe(
-      map((response:any) => response.reverse()) 
-    )
-  }
-
-  //search equuipments by search text
-  searchEquipments(data: {status: string; searchKey: string }):Observable<any>{
-    const url = `${this.REST_API_SERVER}/api/equipments/search`;
-    return this.httpClient.post<any>(url, data, this.httpOptions).pipe(
-      map((response:any) => response.reverse()) 
-    )
+    return this.httpClient.get<any>(url)
   }
 
   //get equuipment by id
@@ -74,6 +64,25 @@ export class EquipmentService {
   deleteEquipmentByID(id:string): Observable<any>{
     const url = `${this.REST_API_SERVER}/api/equipment/${id}`;
     return this.httpClient.delete<any>(url);
+  } 
+
+  //search equuipments by search text
+  searchEquipments(data: {status: string; searchKey: string }):Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/equipments/search`;
+    return this.httpClient.post<any>(url, data, this.httpOptions).pipe(
+      map((response:any) => response.reverse()) 
+    )
   }
   
+  //borrow equipment
+  borrowEquipment(data:{equipmentID: string, employeeID: string}): Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/borrow-equipment`;
+    return this.httpClient.post<any>(url, data);
+  }
+
+  //return equipment
+  returnEquipment(data:{equipmentID: string, employeeID: string}): Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/return-equipment`;
+    return this.httpClient.post<any>(url, data);
+  }
 }

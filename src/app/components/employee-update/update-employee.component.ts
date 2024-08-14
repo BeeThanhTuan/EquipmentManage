@@ -1,7 +1,10 @@
-import { Component, Input, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { numericValidator } from 'src/app/custom-validator/numericValidator';
 import { PhoneNumberPipe } from 'src/app/custom-pipe/phone-number.pipe';
+import { showToastError, showToastSuccess } from 'src/app/toast-message/toastr';
+import { EmployeeService } from 'src/app/services/employee.service';
+import { ToastrService } from 'ngx-toastr';
 @Component({
   selector: 'app-update-employee',
   templateUrl: './update-employee.component.html',
@@ -12,10 +15,11 @@ export class UpdateEmployeeComponent {
   phoneNumberPipe = new PhoneNumberPipe();
   imageUrl: string | ArrayBuffer | null = '';
   @Input() employee!:any;
+  @Output() newEmployee: EventEmitter<Object> = new EventEmitter<Object>();
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, private employeeService: EmployeeService, private toastrService: ToastrService) {
     this.employeeUpdateForm = this.formBuilder.group({
-      id: [{ value: null, disabled: true }],
+      id: [{ value: '', disabled: true }],
       name: ['', Validators.required],
       surname: ['', Validators.required],
       gender: ['0'],
@@ -31,8 +35,8 @@ export class UpdateEmployeeComponent {
       email: ['', [Validators.required, Validators.email]],
       address: ['', Validators.required],
       dateOfBirth: [''],
-      image: [null],
-      fullName: [null]
+      image: [''],
+      fullName: ['']
     });
   }
 
@@ -42,17 +46,23 @@ export class UpdateEmployeeComponent {
     }
   }
 
+
   setData() {
     this.employeeUpdateForm.get('id')?.setValue(this.employee.ID);
     const [firstName, middleName, name] = this.employee.Name.split(' ');
+    this.employeeUpdateForm.get('gender')?.setValue(this.employee.Gender ? '0' : '1');
     this.employeeUpdateForm.get('name')?.setValue(name);
     this.employeeUpdateForm.get('surname')?.setValue(`${firstName} ${middleName}`);
     this.employeeUpdateForm.get('email')?.setValue(this.employee.Email);
     this.employeeUpdateForm.get('address')?.setValue(this.employee.Address);
-    this.employeeUpdateForm.get('dateOfBirth')?.setValue(this.employee.DateOfBirth);
+    const dateOfBirth = this.employee.DateOfBirth;
+    if (dateOfBirth) {
+      const [day, month, year] = dateOfBirth.split('/');
+      const formattedDate = `${year}-${month}-${day}`;
+      this.employeeUpdateForm.get('dateOfBirth')?.setValue(formattedDate);
+    }
     this.employeeUpdateForm.get('phoneNumber')?.setValue(this.employee.PhoneNumber);
     this.imageUrl = this.employee.Image ? `http://localhost:3000/resources/employees/${this.employee.Image}` : '';
-
   }
 
 
@@ -116,8 +126,41 @@ export class UpdateEmployeeComponent {
     return null;
   }
 
+  removeImage(){
+    this.imageUrl = '';
+    this.employeeUpdateForm.get('image')?.setValue(null);
+  }
+
   updateEmployee() {
-    console.table(this.employeeUpdateForm.value);
+    this.updateFullname();
+    const newEmployee = new FormData();
+    //fields that need to be removed
+    const id = this.employeeUpdateForm.get('id')?.value;
+    const dateOfBirth = this.employeeUpdateForm.get('dateOfBirth')?.value;
+    const excludedFields = ['dateOfBirth', 'id', 'name', 'surname'];
+
+    Object.keys(this.employeeUpdateForm.value).forEach(key => {
+      if (!excludedFields.includes(key) ) {
+        newEmployee.append(key, this.employeeUpdateForm.value[key]);
+      }
+    });
+
+    if (dateOfBirth) {
+      const [year, month, day] = dateOfBirth.split('-');
+      const formattedDate = `${day}/${month}/${year}`;
+      newEmployee.append('dateOfBirth', formattedDate);
+    }
+    
+    this.employeeService.updateEmployeeByID(id, newEmployee).subscribe(
+      (respone) =>{
+        this.newEmployee.emit(respone.data);
+        this.removeEmployeeUpdatePopup();
+        showToastSuccess(this.toastrService, 'Update eqmployee success!');  
+      },
+      (error)=>{
+        showToastError(this.toastrService, `${error}`);  
+      }
+    )
   }
 
   removeEmployeeUpdatePopup() {

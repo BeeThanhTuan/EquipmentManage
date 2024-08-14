@@ -1,3 +1,7 @@
+:host-context(.light-mode) .overlay{
+    background-color: rgba(182, 181, 181, 0.5);
+}
+
 .overlay {
     position: absolute;
     top: 0;
@@ -6,13 +10,18 @@
     width: 100%;
     height: 100vh;
     z-index: 10;
-    visibility: hidden;
-    display: flex;
+    display: none;
     justify-content: center;
     align-items: center;
 }
-.overlay.active{
-    visibility: visible;
+
+.overlay.active {
+    display: flex;
+}
+
+:host-context(.light-mode) .overlay .info-detail{
+    background-color: var(--light-bg-color-undertone);
+    box-shadow: 0px 0px 5px 1.5px rgb(148, 148, 148);
 }
 
 .overlay .info-detail {
@@ -22,9 +31,10 @@
     background-color: var(--dark-bg-color);
     border-radius: 12px;
     padding: 20px 30px;
-    box-shadow: 0px 0px 5px 1.5px black;
+    box-shadow: 0px 0px 10px 2px black;
 }
-.info-detail .remove{
+
+.info-detail .remove {
     position: absolute;
     width: 45px;
     height: 45px;
@@ -35,12 +45,19 @@
     align-items: center;
     cursor: pointer;
 }
-.remove i{
+
+:host-context(.light-mode) .remove i{
+    color: var(--light-color);
+}
+
+.remove i {
     font-size: 22px;
     color: var(--dark-color);
 }
-.remove:hover i{
-    color: transparent; 
+
+:host-context(.light-mode) .remove:hover i ,
+.remove:hover i {
+    color: transparent;
     background-image: var(--bg-raial-gradient-undertone);
     background-clip: text;
     -webkit-background-clip: text;
@@ -62,7 +79,9 @@ form .img-area {
     position: relative;
     margin-top: 10px;
 }
-
+:host-context(.light-mode) .img-area img {
+    border: 2px solid  rgb(196, 196, 196);
+}
 .img-area img {
     width: 95px;
     height: 95px;
@@ -73,6 +92,10 @@ form .img-area {
     pointer-events: none;
 }
 
+:host-context(.light-mode) .btn-change-avatar{
+    border: 1px solid var(--light-color-undertone);
+    background-color: var(--light-bg-color-undertone);
+}
 .btn-change-avatar {
     position: absolute;
     width: 25px;
@@ -100,6 +123,39 @@ form .img-area {
     font-size: 12px;
 }
 
+.img-area .btn-cancel-choose-img {
+    position: absolute;
+    bottom: 7px;
+    right: -100px;
+}
+
+:host-context(.light-mode) .btn-cancel-choose-img button {
+    background-image: var(--bg-raial-gradient);
+    color: var(--dark-color-undertone)
+}
+
+.btn-cancel-choose-img button {
+    padding: 2px 15px;
+    font-size: 12px;
+    border: 1px solid var(--dark-color);
+    border-radius: 3px;
+    background-color: var(--dark-bg-color-undertone);
+    cursor: pointer;
+    color: var(--dark-color);
+}
+:host-context(.light-mode) .btn-cancel-choose-img button:hover {
+    border: none;
+    border: 1px solid rgb(207, 207, 207);
+
+}
+.btn-cancel-choose-img button:hover {
+    color: rgb(211, 76, 76);
+    border: 1px solid rgb(211, 76, 76);
+}
+
+.btn-cancel-choose-img button:active {
+    transform: scale(1.05);
+}
 
 .info-employee {
     width: 100%;
@@ -125,6 +181,22 @@ form .img-area {
     position: relative;
     width: 100%;
 }
+:host-context(.light-mode) .info input,
+:host-context(.light-mode) .info div input,
+:host-context(.light-mode) .info select {
+    background-color: var(--light-bg-color);
+    color: #252525;
+    border: 1px solid rgb(196, 196, 196) !important;
+}
+
+:host-context(.light-mode) .info input:focus,
+:host-context(.light-mode) .info div input:focus,
+:host-context(.light-mode) .info select:focus{
+    outline: none;
+    border: 2px solid rgb(85, 147, 240) !important;
+}
+
+
 .info input,
 .info div input,
 .info select {
@@ -132,30 +204,21 @@ form .img-area {
     width: 100%;
     height: 40px;
     border-radius: 3px;
-    border: none;
+    border: 1px solid rgb(87, 86, 86) !important;
     background-color: var(--dark-bg-color-undertone);
     color: #eceaea;
     padding: 0px 15px;
     font-size: 16px;
 }
-.info div span{
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 6px;
-    height: 101%;
-    transform: translateY(-50%);
+
+.info input:focus,
+.info div input:focus,
+.info select:focus{
+    outline: none;
+    border: 2px solid rgb(190, 190, 190) !important;
 }
 
-.info div span.invalidating{
-    background-color: rgb(197, 59, 59);
-}
-
-.info div span.validating{
-    background-color: rgb(36, 129, 72);
-}
-
-.invalid{
+.invalid {
     font-size: 13px;
     color: rgb(197, 59, 59);
 }
@@ -172,15 +235,17 @@ form .img-area {
     outline: none;
     border: 1px solid #fff;
 }
-.option{
+
+.option {
     margin-top: 20px;
     width: 100%;
     display: flex;
     justify-content: flex-end;
 }
-.option button{
+
+.option button {
     height: 40px;
-    padding: 0px 25px;
+    padding: 0px 40px;
     border-radius: 3px;
     font-size: 16px;
     border: none;
@@ -188,50 +253,53 @@ form .img-area {
     background-image: var(--bg-raial-gradient);
     cursor: pointer;
 }
-.option button:hover{
-    filter: brightness(1.3);
+
+.option button:hover {
+    filter: brightness(1.2);
 }
-.option button:active{
+
+.option button:active {
     transform: scale(1.05);
 }
-.option button:disabled{
+
+.option button:disabled {
     cursor: no-drop;
     color: var(--dark-bg-color);
     transform: scale(1);
-    filter: brightness(1) blur(0.7px);
+    filter: brightness(1) blur(0.3px);
 }
 
 @media (max-width: 800px) {
-    .overlay .info-detail{
+    .overlay .info-detail {
         width: 400px;
         height: 520px;
     }
-    .vertical-scroll{
+    .vertical-scroll {
         margin-top: 10px;
         max-height: 350px;
         overflow: hidden;
         overflow-y: scroll;
     }
-    .vertical-scroll::-webkit-scrollbar{
+    .vertical-scroll::-webkit-scrollbar {
         width: 4px;
         height: 4px;
-    } 
+    }
     .vertical-scroll::-webkit-scrollbar-thumb,
-    .vertical-scroll::-webkit-scrollbar-track{
-        background-color:var(--dark-color);
+    .vertical-scroll::-webkit-scrollbar-track {
+        background-color: var(--dark-color);
         border-radius: 3px;
     }
-    .vertical-scroll::-webkit-scrollbar-track-piece{
+    .vertical-scroll::-webkit-scrollbar-track-piece {
         background-color: rgb(15, 15, 15);
     }
-    form{
+    form {
         justify-content: center;
         align-items: center;
     }
-    .info-employee{
+    .info-employee {
         flex-direction: column;
     }
-    .info-employee .info{
+    .info-employee .info {
         width: 100%;
         padding: 0 10px;
     }

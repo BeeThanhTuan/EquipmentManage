@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="list-new-equipment-borrowed">
-            <p style="margin-left: 10px; letter-spacing: 0.3px;">New equipment' borrowing list</p>
+            <p style="margin-left: 10px; letter-spacing: 0.3px;">List of borrowed equipment</p>
             <div class="vertical-scroll">
                 <table>
                     <thead>
@@ -52,69 +52,22 @@
 
         </div>
         <div class="list-new-employee-borrowed">
-            <p style="margin-left: 10px; letter-spacing: 0.3px;">New employees' borrowing list</p>
+            <p style="margin-left: 10px; letter-spacing: 0.3px;">List of borrowed employees</p>
             <div class="vertical-scroll">
                 <ul>
-                    <li>
+                    <li *ngFor="let employee of listEmployeeBorrowed">
                         <div class="info-employee">
-                            <img src="../assets/images/employee.png">
+                            <img src="http://localhost:3000/resources/employees/{{employee.Image}}">
                             <div class="info">
-                                <p class="name">Antoni</p>
-                                <p class="mail">antoini4@gmail.com</p>
+                                <p class="name">{{employee.Name | namePipe}}</p>
+                                <p class="mail">{{employee.Email | emailPipe}}</p>
                             </div>
                         </div>
-                        <a routerLink="/manage/employee/id">
+                        <a routerLink="/manage/employee/{{employee.ID}}">
                             Detail
                         </a>
                     </li>
-                    <li>
-                        <div class="info-employee">
-                            <img src="../assets/images/employee.png">
-                            <div class="info">
-                                <p class="name">Antoni</p>
-                                <p class="mail">antoiniaa4@gmail.com</p>
-                            </div>
-                        </div>
-                        <a href="">
-                            Detail
-                        </a>
-                    </li>
-                    <li>
-                        <div class="info-employee">
-                            <img src="../assets/images/employee.png">
-                            <div class="info">
-                                <p class="name">Antoni</p>
-                                <p class="mail">antoini4@gmail.com</p>
-                            </div>
-                        </div>
-                        <a href="">
-                            Detail
-                        </a>
-                    </li>
-                    <li>
-                        <div class="info-employee">
-                            <img src="../assets/images/employee.png">
-                            <div class="info">
-                                <p class="name">Antoni</p>
-                                <p class="mail">antoini4@gmail.com</p>
-                            </div>
-                        </div>
-                        <a href="">
-                            Detail
-                        </a>
-                    </li>
-                    <li>
-                        <div class="info-employee">
-                            <img src="../assets/images/employee.png">
-                            <div class="info">
-                                <p class="name">Antoni</p>
-                                <p class="mail">antoini4@gmail.com</p>
-                            </div>
-                        </div>
-                        <a href="">
-                            Detail
-                        </a>
-                    </li>
+                    
 
                 </ul>
             </div>

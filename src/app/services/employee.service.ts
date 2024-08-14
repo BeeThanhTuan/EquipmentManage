@@ -14,9 +14,17 @@ export class EmployeeService {
   };
   constructor(private httpClient: HttpClient) {}
 
-   //get all equuipments
+   //get all employees
    getAllEmployees():Observable<any>{
     const url = `${this.REST_API_SERVER}/api/employees`;
+    return this.httpClient.get<any>(url).pipe(
+      map((response:any) => response.reverse()) 
+    )
+  }
+
+  //get all equuipments borrowes equipment
+  getAllEmployeesBorrowesEquipment():Observable<any>{
+    const url = `${this.REST_API_SERVER}/api/employees/borrowed`;
     return this.httpClient.get<any>(url).pipe(
       map((response:any) => response.reverse()) 
     )

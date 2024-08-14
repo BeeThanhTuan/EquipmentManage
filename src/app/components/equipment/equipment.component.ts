@@ -55,15 +55,6 @@ export class EquipmentComponent {
       }
     )
   }
-
-  //search equipments 
-  searchEquipments(){
-    this.equipmentService.searchEquipments({status: this.status, searchKey: this.searchKey.value}).subscribe(
-      (response)=>{
-        this.listEquipment = response;
-      }
-    )
-  }
   
   //get index equipment
   getIndex(i: number){
@@ -96,9 +87,18 @@ export class EquipmentComponent {
   deleteEquimentByID(){
     this.equipmentService.deleteEquipmentByID(this.id).subscribe(
       ()=>{
-        this.togglePopupDelete();
+        this.togglePopupConfirm();
         this.listEquipment.splice(this.index,1);
         showToastSuccess(this.toastService, 'Deleted equipment success!');
+      }
+    )
+  }
+
+  //search equipments 
+  searchEquipments(){
+    this.equipmentService.searchEquipments({status: this.status, searchKey: this.searchKey.value}).subscribe(
+      (response)=>{
+        this.listEquipment = response;
       }
     )
   }
@@ -116,9 +116,9 @@ export class EquipmentComponent {
     overlay.classList.add('active');
   }
 
-  //popup delete
-  togglePopupDelete(){
-    const overlay = document.getElementById('popupDelete') as HTMLElement;
+  //popup delete confirm
+  togglePopupConfirm(){
+    const overlay = document.getElementById('popupConfirm') as HTMLElement;
     overlay.classList.toggle('active');
   }
 

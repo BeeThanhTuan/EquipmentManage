@@ -14,8 +14,11 @@ export class ManageComponent {
   title!:string ;
   name!:string;
   email!:string;
+  darkmode: boolean = true;
 
-  constructor(private router: Router, private authService: AuthService){}
+  constructor(private router: Router, private authService: AuthService){
+    this.darkmode = localStorage.getItem('darkMode') === 'true';
+  }
 
   ngOnInit(): void {
     this.router.events
@@ -25,6 +28,7 @@ export class ManageComponent {
       });
     this.title = this.removePrefix(this.router.routerState.snapshot.url);
     this.getInfoUser();
+    this.applySavedTheme();
   }
 
   getInfoUser(){
@@ -34,6 +38,28 @@ export class ManageComponent {
         this.name = response.Name;
         this.email = response.Email;  
     })
+  }
+
+  changeThemeMode() {
+
+    this.darkmode = !this.darkmode;
+    const body = document.querySelector('body') as HTMLElement;
+    if (!this.darkmode) {
+      body.classList.add('light-mode');
+    } else {
+      body.classList.remove('light-mode');
+    }
+    // save localStorage
+    localStorage.setItem('darkMode', String(this.darkmode));
+  }
+
+  applySavedTheme(): void {
+    const body = document.querySelector('body') as HTMLElement;
+    if (!this.darkmode) {
+      body.classList.add('light-mode');
+    } else {
+      body.classList.remove('light-mode');
+    }
   }
 
   removePrefix(url: string): string {
@@ -54,4 +80,6 @@ export class ManageComponent {
   redirectToHome(){
     this.router.navigate(['/manage/dashboard'])
   }
+
+  
 }

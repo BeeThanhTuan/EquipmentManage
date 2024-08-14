@@ -2,7 +2,7 @@
     <div class="content">
         <div class="header">
             <div class="search-box">
-                <input type="text" name="" placeholder="Search at here...">
+                <input type="text" name="" placeholder="Search at here..." [formControl]="searchKey" spellcheck="false">
                 <i class='bx bx-search'></i>
             </div>
             <div class="btn-add">
@@ -18,7 +18,7 @@
                         <th>Gender</th>
                         <th>Phone</th>
                         <th>Email</th>
-                        <th>Date of birth</th>
+                        <th>Date of Birth</th>
                         <th class="options-box">Options</th>
                     </tr>
                 </thead>
@@ -27,14 +27,19 @@
                         <td>{{employee.ID}}</td>
                         <td>{{employee.Name}}</td>
                         <td>{{employee.Gender ? 'Male' : 'Female'}}</td>
-                        <td>{{employee.PhoneNumber}}</td>
+                        <td>{{employee.PhoneNumber | phoneNumberPipe}}</td>
                         <td>{{employee.Email}}</td>
-                        <td>{{employee.DateOfBirth}}</td>
+                        <td>{{employee.DateOfBirth }}</td>
                         <td class="options-box">
                             <div class="options">
                                 <a routerLink="/manage/employee/{{employee.ID}}"><i class="fa-solid fa-circle-info"></i></a>
                                 <i class="fa-solid fa-pen" (click)="openEmployeeUpdatePopup(employee); getIndex(i)"></i>
-                                <i class="fa-solid fa-trash"></i>
+                                <i class="fa-solid fa-trash" (click)="togglePopupConfirm();getIndex(i); getID(employee.ID)"
+                                [ngStyle]="{
+                                    'opacity': employee.ListEquipmentBorrowed.length === 0 ? '1' : '0.2',
+                                    'pointer-events': employee.ListEquipmentBorrowed.length === 0  ? 'all' : 'none'
+                                }">
+                                </i>
                             </div>
                         </td>
                     </tr>
@@ -43,5 +48,25 @@
         </div>
     </div>
 </div>
-<app-update-employee [employee]="employee"/>
+
+<!-- Popup delete -->
+<div class="overlay-popup-confirm" id="popupConfirm" (click)="togglePopupConfirm()">
+    <div class="popup" (click)="stopPropagation($event)">
+        <div class="close-popup" id="btnClosePopup" (click)="togglePopupConfirm()">
+            <i class='bx bx-x'></i>
+        </div>
+        <h4 class="title">Confirm deletion</h4>
+        <p class="message">Are you sure you would like to delete this
+            emloyee from the database? This action
+            cannot be undone.
+        </p>
+        <div class="actions">
+            <button class="cancel" (click)="togglePopupConfirm()">Cancel</button>
+            <button class="delete" (click)="deleteEmployeeByID()">Delete</button>
+        </div>
+
+    </div>
+</div>
+
+<app-update-employee [employee]="employee" (newEmployee)="getAndReplaceNewEmployee($event)"/>
 <app-employee-add (employee)="getEmployeeFormChild($event)"/>

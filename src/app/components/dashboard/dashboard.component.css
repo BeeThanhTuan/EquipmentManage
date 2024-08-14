@@ -21,6 +21,10 @@
     gap: 15px;
 }
 
+:host-context(.light-mode) .main-content .chart-area-main {
+    background-image: var(--light-bg-raial-gradient);
+}
+
 .main-content .chart-area-main {
     min-width: 550px;
     width: 100%;
@@ -68,6 +72,10 @@
     }
 }
 
+:host-context(.light-mode) .main-content .list-new-equipment-borrowed {
+    background-color: var(--light-bg-color-undertone);
+}
+
 .main-content .list-new-equipment-borrowed {
     width: 100%;
     border-radius: 12px;
@@ -78,16 +86,23 @@
     flex-direction: column;
 }
 
+:host-context(.light-mode) .list-new-equipment-borrowed p {
+    color: var(--light-color-undertone);
+}
+
 .list-new-equipment-borrowed p {
     font-size: 17px;
     color: var(--dark-color-undertone);
-    background-color: var(--dark-bg-color-undertone);
 }
 
 table {
     position: relative;
     width: 100%;
     border-collapse: collapse;
+}
+
+:host-context(.light-mode) thead {
+    background-color: var(--light-bg-color-undertone);
 }
 
 thead {
@@ -99,11 +114,24 @@ thead {
     background-color: var(--dark-bg-color-undertone);
 }
 
+:host-context(.light-mode) th,
+td {
+    font-weight: 400;
+}
+
 th,
 td {
     padding: 8px;
     text-align: center;
     font-weight: 300;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+:host-context(.light-mode) td {
+    color: var(--light-color-undertone);
+    font-weight: 400;
 }
 
 td {
@@ -113,11 +141,11 @@ td {
     border-top: 1px solid var(--dark-color);
 }
 
-td[class="status"] {
+td.status {
     min-width: 100px;
 }
 
-td[class="status"] span {
+td.status span {
     width: fit-content;
     border-radius: 5px;
     font-size: 15px;
@@ -156,19 +184,33 @@ tbody tr {
     transition: 0.3s;
 }
 
-tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.149);
+:host-context(.light-mode) tbody tr:hover {
+    background-color: rgba(151, 151, 151, 0.319);
 }
-tbody tr:hover td{
+
+tbody tr:hover {
+    background-color: rgba(67, 67, 67, 0.149);
+}
+
+:host-context(.light-mode) tbody tr:hover td {
+    color: var(--light-color);
+    border-top: 1px solid var(--light-color-undertone);
+    border-bottom: 1px solid var(--light-color-undertone);
+}
+
+tbody tr:hover td {
     color: var(--dark-color-undertone);
     border-top: 1px solid var(--dark-color-undertone);
     border-bottom: 1px solid var(--dark-color-undertone);
-
 }
 
 .container .secondary-content {
     min-width: 360px;
     margin-left: 20px;
+}
+
+:host-context(.light-mode) .secondary-content .chart-area {
+    background-image: var(--light-bg-raial-gradient);
 }
 
 .secondary-content .chart-area {
@@ -191,6 +233,10 @@ tbody tr:hover td{
     letter-spacing: 0.1px;
 }
 
+:host-context(.light-mode) .chart-area .circular-progress {
+    background: conic-gradient(var(--light-color) calc(var(--progress-value) * 3.6deg), var(--light-bg-color) 0deg);
+}
+
 .chart-area .circular-progress {
     position: relative;
     display: flex;
@@ -202,6 +248,10 @@ tbody tr:hover td{
     height: 190px;
     border-radius: 50%;
     background: conic-gradient(var(--dark-color-undertone) calc(var(--progress-value) * 3.6deg), var(--dark-bg-color-undertone) 0deg);
+}
+
+:host-context(.light-mode) .chart-area .circular-progress::before {
+    background-color: #d0d0d0;
 }
 
 .chart-area .circular-progress::before {
@@ -226,13 +276,22 @@ tbody tr:hover td{
     font-weight: 600;
 }
 
+:host-context(.light-mode) .chart-area .description p {
+    color: var(--light-color);
+}
+
 .chart-area .description p {
     font-size: 15px;
     color: var(--dark-color);
 }
 
+:host-context(.light-mode) .secondary-content .list-new-employee-borrowed {
+    background-color: var(--light-bg-color-undertone);
+}
+
 .secondary-content .list-new-employee-borrowed {
     width: 100%;
+    height: 255px;
     max-height: 260px;
     background-color: var(--dark-bg-color-undertone);
     border-radius: 12px;
@@ -267,31 +326,42 @@ tbody tr:hover td{
     align-items: center;
     padding: 5px 10px;
     border-radius: 5px;
-    transition: 0.3s;
+}
+
+:host-context(.light-mode) .vertical-scroll ul li:hover {
+    background-color: rgba(67, 67, 67, 0.149);
 }
 
 .vertical-scroll ul li:hover {
-    filter: brightness(125%);
+    filter: brightness(1);
+    background-color: rgba(231, 231, 231, 0.048);
+}
+
+:host-context(.light-mode) .vertical-scroll ul:hover li {
+    filter: none;
 }
 
 .vertical-scroll ul:hover li {
-    filter: brightness(50%) blur(0.3px);
+    filter: brightness(0.7) blur(0.3px);
 }
 
 .vertical-scroll ul li:hover {
-    filter: brightness(125%) !important;
+    filter: brightness(1) !important;
 }
 
 ul li .info-employee {
     display: flex;
 }
 
+:host-context(.light-mode) .info-employee img {
+    border: 1px solid rgb(91, 91, 91);
+}
+
 .info-employee img {
     width: 50px;
     height: 50px;
-    border-radius: 10px;
+    border-radius: 5px;
     margin-right: 10px;
-    filter: brightness(90%);
 }
 
 .info-employee .info {
@@ -301,13 +371,22 @@ ul li .info-employee {
     justify-content: center;
 }
 
+:host-context(.light-mode) .info-employee .info p {
+    color: var(--light-color);
+}
+
 .info-employee .info p {
     color: var(--dark-color);
     font-size: 13px;
     font-weight: 400;
 }
 
-.info-employee .info p[class="name"],
+:host-context(.light-mode) .info-employee .info p.name,
+:host-context(.light-mode) .list-new-employee-borrowed p {
+    color: var(--light-color);
+}
+
+.info-employee .info p.name,
 .list-new-employee-borrowed p {
     font-size: 17px;
     color: var(--dark-color-undertone);
@@ -325,7 +404,7 @@ ul li .info-employee {
     font-weight: 500;
     font-size: 15px;
     color: var(--dark-bg-color);
-    background-image: var(--bg-raial-gradient);
+    background-image: var(--bg-raial-gradient-undertone);
 }
 
 .list-new-employee-borrowed ul li a:active {

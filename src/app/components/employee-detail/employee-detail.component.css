@@ -16,6 +16,10 @@
     max-height: 780px;
 }
 
+:host-context(.light-mode) .infor-detail {
+    background-color: var(--light-bg-color-undertone);
+}
+
 .infor-detail {
     position: relative;
     padding: 20px;
@@ -41,6 +45,10 @@
     position: relative;
 }
 
+:host-context(.light-mode) .img-area img {
+    border: 2px solid var(--light-color-undertone);
+}
+
 .img-area img {
     width: 95px;
     height: 95px;
@@ -51,7 +59,6 @@
     pointer-events: none;
 }
 
-
 .main-infor .infor {
     width: 100%;
     display: flex;
@@ -60,13 +67,17 @@
     align-items: center;
 }
 
-.main-infor .infor-main p[class="name"] {
+.main-infor .infor-main p.name {
     font-size: 22px;
     letter-spacing: 0.5px;
     text-align: center;
 }
 
-.main-infor .infor-main p[class="id"] {
+:host-context(.light-mode) .main-infor .infor-main p.id {
+    color: var(--light-color-undertone);
+}
+
+.main-infor .infor-main p.id {
     text-align: center;
     font-size: 17px;
     font-weight: 400;
@@ -79,9 +90,11 @@
     padding: 10px 0px;
     letter-spacing: 0.5px;
 }
+
 .contact {
     border-bottom: 0.2px solid var(--dark-bg-color);
 }
+
 .information span,
 .contact span {
     font-weight: 500;
@@ -91,6 +104,11 @@
 .contact .infor {
     font-size: 15px;
     margin-top: 5px;
+}
+
+:host-context(.light-mode) .information .infor p,
+:host-context(.light-mode) .contact .infor p {
+    color: var(--light-color-undertone);
 }
 
 .information .infor p,
@@ -126,6 +144,10 @@
     align-items: center;
 }
 
+:host-context(.light-mode) .options button {
+    background-image: var(--bg-raial-gradient-undertone);
+}
+
 .options button {
     padding: 5px 25px;
     cursor: pointer;
@@ -142,6 +164,10 @@
 
 .options button:active {
     transform: scale(1.05);
+}
+
+:host-context(.light-mode) .list-equipment-borrowed {
+    background-color: var(--light-bg-color-undertone);
 }
 
 .list-equipment-borrowed {
@@ -161,6 +187,10 @@
     letter-spacing: 1px;
 }
 
+:host-context(.light-mode) .vertical-scroll {
+    background-color: var(--light-bg-color-undertone);
+}
+
 .vertical-scroll {
     width: 100%;
     height: calc(100vh - 200px);
@@ -175,23 +205,27 @@
 .vertical-scroll::-webkit-scrollbar {
     display: none;
 }
-.vertical-scroll .unborrowed{
+
+.vertical-scroll .unborrowed {
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.unborrowed div{
+
+.unborrowed div {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 }
-.unborrowed div i{
+
+.unborrowed div i {
     font-size: 70px;
 }
-.unborrowed div p{
+
+.unborrowed div p {
     font-size: 20px;
     color: var(--dark-color);
 }
@@ -202,6 +236,10 @@ table {
     border-collapse: collapse;
     table-layout: fixed;
     scroll-behavior: smooth;
+}
+
+:host-context(.light-mode) thead {
+    background-color: var(--light-bg-color-undertone);
 }
 
 thead {
@@ -226,6 +264,12 @@ td {
     font-weight: 300;
 }
 
+:host-context(.light-mode) td {
+    border-top: 1px solid var(--light-color);
+    color: var(--light-color-undertone);
+    font-weight: 400;
+}
+
 td {
     height: 44px;
     color: var(--dark-color);
@@ -237,13 +281,17 @@ td {
     text-overflow: ellipsis;
 }
 
-td[class="image"] img {
+td.image img {
     width: 47px;
     height: 47px;
     border-radius: 3px;
 }
 
-td[class="option"] a {
+:host-context(.light-mode) td.option a {
+    background-image: var(--bg-raial-gradient-undertone);
+}
+
+td.option a {
     text-decoration: none;
     font-weight: 500;
     padding: 5px 20px;
@@ -252,17 +300,26 @@ td[class="option"] a {
     background-image: var(--bg-raial-gradient);
 }
 
-
-tbody tr:hover td[class="option"] a {
-    filter: brightness(1.5);
+tbody tr:hover td.option a {
+    filter: brightness(1.2);
 }
 
 tbody tr {
     transition: 0.3s;
 }
 
+:host-context(.light-mode) tbody tr:hover {
+    background-image: linear-gradient(125deg, transparent, rgba(24, 24, 24, 0.2)5%, rgba(24, 24, 24, 0.2) 95%, transparent);
+}
+
 tbody tr:hover {
     background-image: linear-gradient(125deg, transparent, rgba(255, 255, 255, 0.149) 5%, rgba(255, 255, 255, 0.149) 95%, transparent);
+}
+
+:host-context(.light-mode) tbody tr:hover td {
+    color: var(--light-color-undertone);
+    border-top: 1px solid var(--light-color-undertone);
+    border-bottom: 1px solid var(--light-color-undertone);
 }
 
 tbody tr:hover td {

@@ -21,10 +21,6 @@
                         <label>ID</label>
                         <div>
                             <input type="text" formControlName="id" (input)="formatID($event)">
-                            <span [ngClass]="{
-                                'validating':idControl?.valid && (idControl?.dirty || idControl?.touched),
-                                'invalidating': idControl?.invalid && (idControl?.dirty || idControl?.touched)
-                            }"></span>
                         </div>
                         <div *ngIf="idControl?.invalid && (idControl?.dirty || idControl?.touched)">
                             <div class="invalid" *ngIf="idControl?.hasError('required')">Id is required.</div>
@@ -43,10 +39,7 @@
                         <label>Name</label>
                         <div>
                             <input type="text" formControlName="name" (blur)="updateFullname()">
-                            <span [ngClass]="{
-                                'validating':nameControl?.valid && (nameControl?.dirty || nameControl?.touched),
-                                'invalidating': nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)
-                            }"></span>
+                            
                         </div>
                         <div *ngIf="nameControl?.invalid && (nameControl?.dirty || nameControl?.touched)">
                             <div class="invalid" *ngIf="nameControl?.hasError('required')">Name is required.</div>
@@ -56,10 +49,7 @@
                         <label>Surname - Middle name</label>
                         <div>
                             <input type="text" formControlName="surname" (blur)="updateFullname()">
-                            <span [ngClass]="{
-                                'validating':surnameControl?.valid && (surnameControl?.dirty || surnameControl?.touched),
-                                'invalidating': surnameControl?.invalid && (surnameControl?.dirty || surnameControl?.touched)
-                            }"></span>
+                            
                         </div>
                         <div *ngIf="surnameControl?.invalid && (surnameControl?.dirty || surnameControl?.touched)">
                             <div class="invalid" *ngIf="surnameControl?.hasError('required')">Surname is required.</div>
@@ -69,10 +59,7 @@
                         <label>Phone number</label>
                         <div>
                             <input type="text" formControlName="phoneNumber" (input)="formatPhoneNumber($event)">
-                            <span [ngClass]="{
-                                'validating': phoneNumberControl?.valid && ( phoneNumberControl?.dirty ||  phoneNumberControl?.touched),
-                                'invalidating':  phoneNumberControl?.invalid && ( phoneNumberControl?.dirty ||  phoneNumberControl?.touched)
-                            }"></span>
+                            
                         </div>
                         <div *ngIf="phoneNumberControl?.invalid && (phoneNumberControl?.dirty || phoneNumberControl?.touched)">
                             <div class="invalid" *ngIf="phoneNumberControl?.hasError('required')">Number phone is required.</div>
@@ -85,10 +72,7 @@
                         <label>Email</label>
                         <div>
                             <input type="email" formControlName="email">
-                            <span [ngClass]="{
-                                'validating': emailControl?.valid && ( emailControl?.dirty ||  emailControl?.touched),
-                                'invalidating':  emailControl?.invalid && ( emailControl?.dirty ||  emailControl?.touched)
-                            }"></span>
+                            
                         </div>
                         <div *ngIf="emailControl?.invalid && (emailControl?.dirty || emailControl?.touched)">
                             <div class="invalid" *ngIf="emailControl?.hasError('required')">Email is required.</div>
@@ -99,10 +83,7 @@
                         <label>Address</label>
                         <div>
                             <input type="text" formControlName="address">
-                            <span [ngClass]="{
-                                'validating':addressControl?.valid && (addressControl?.dirty || addressControl?.touched),
-                                'invalidating': addressControl?.invalid && (addressControl?.dirty || addressControl?.touched)
-                            }"></span>
+
                         </div>
                         <div *ngIf="addressControl?.invalid && (addressControl?.dirty || addressControl?.touched)">
                             <div class="invalid" *ngIf="addressControl?.hasError('required')">Address is required.</div>

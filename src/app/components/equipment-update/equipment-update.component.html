@@ -59,7 +59,7 @@
                         </div>
                         <div class="select-box" id="searchBoxEmployee">
                             <div class="search">
-                                <input type="text" placeholder="Search..." id="inputSearchIDEmployee" formControlName="query" >
+                                <input type="text" placeholder="Search..." id="inputSearchIDEmployee" formControlName="query" autocomplete="off">
                                 <i class='bx bx-search'></i>
                             </div>
                             <div class="list-option">
@@ -67,14 +67,10 @@
                                     <li (click)="getIDEmployee($event)">
                                         <p class="id-employee">-None-</p>
                                     </li>
-                                    <li (click)="getIDEmployee($event)">
-                                        <p class="id-employee">NV1233</p>
-                                        <p>Nguyễn Thanh Tuấn</p>
-                                    </li>
-                                    <li (click)="getIDEmployee($event)">
-                                        <p class="id-employee">NV1233</p>
-                                        <p>Nguyễn Thanh Tuấn</p>
-                                    </li>
+                                    <li *ngFor="let employee of listEmployee" (click)="getIDEmployee($event)">
+                                        <p class="id-employee">{{employee.ID}}</p>
+                                        <p>{{employee.Name}}</p>
+                                    </li>  
                                 </ul>
                             </div>
                         </div>

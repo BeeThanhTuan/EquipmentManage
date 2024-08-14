@@ -3,7 +3,7 @@
         <div class="header">
             <div class="search-box">
                 <input type="text" spellcheck="false" [formControl] = "searchKey" placeholder="Search at here...">
-                <i class='bx bx-search' (click)="searchEquipments()"></i>
+                <i class='bx bx-search'></i>
             </div>
             <div class="btn-add">
                 <button (click)="openEquipmentAddPopup()"><i class="fa-solid fa-plus"></i>Add </button>
@@ -38,7 +38,13 @@
                             <div class="options">
                                 <a routerLink="/manage/equipment/{{equipment.ID}}"><i class="fa-solid fa-circle-info"></i></a>
                                 <i class="fa-solid fa-pen" (click)="openEquipmentUpdatePopup(equipment); getIndex(i)"></i>
-                                <i class="fa-solid fa-trash" (click)="togglePopupDelete(); getIndex(i); getID(equipment.ID)"></i>
+                                <i class="fa-solid fa-trash" (click)="togglePopupConfirm(); getIndex(i); getID(equipment.ID)"
+                                    [ngStyle]="{
+                                        'opacity': equipment.Status === false ? '1' : '0.2',
+                                        'pointer-events': equipment.Status === false ? 'all' : 'none'
+                                    }">
+                                </i>
+                            
                             </div>
                         </td>
                     </tr>
@@ -49,9 +55,9 @@
 </div>
 
 <!-- Popup delete -->
-<div class="overlay-popup-delete" id="popupDelete" (click)="togglePopupDelete()">
+<div class="overlay-popup-confirm" id="popupConfirm" (click)="togglePopupConfirm()">
     <div class="popup" (click)="stopPropagation($event)">
-        <div class="close-popup" id="btnClosePopup" (click)="togglePopupDelete()">
+        <div class="close-popup" id="btnClosePopup" (click)="togglePopupConfirm()">
             <i class='bx bx-x'></i>
         </div>
         <h4 class="title">Confirm deletion</h4>
@@ -60,7 +66,7 @@
             cannot be undone.
         </p>
         <div class="actions">
-            <button class="cancel" (click)="togglePopupDelete()">Cancel</button>
+            <button class="cancel" (click)="togglePopupConfirm()">Cancel</button>
             <button class="delete" (click)="deleteEquimentByID()">Delete</button>
         </div>
 
